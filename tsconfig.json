@@ -1,0 +1,3 @@
+{
+  "extends": "@wavevision/coding-standard/ts/tsconfig.json"
+}

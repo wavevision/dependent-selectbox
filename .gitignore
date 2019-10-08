@@ -1,0 +1,6 @@
+.idea/*
+!.idea/codeStyles/codeStyleConfig.xml
+!.idea/codeStyles/Project.xml
+node_modules
+temp
+vendor

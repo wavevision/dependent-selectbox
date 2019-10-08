@@ -1,0 +1,33 @@
+{
+  "name": "@wavevision/dependent-selectbox",
+  "version": "1.0.0",
+  "description": "Dependent selectbox component for Nette forms.",
+  "engines": {
+    "node": "10.16.0"
+  },
+  "main": "index.js",
+  "author": {
+    "name": "Wavevision s.r.o.",
+    "email": "info@wavevision.com"
+  },
+  "contributors": [
+    {
+      "name": "Jakub Filla",
+      "email": "jakub.filla@wavevision.com"
+    },
+    {
+      "name": "Vít Rozsíval",
+      "email": "vit@wavevision.com"
+    }
+  ],
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@typescript-eslint/eslint-plugin": "^2.3.3",
+    "@typescript-eslint/parser": "^2.3.3",
+    "@wavevision/coding-standard": "^1.0.6",
+    "eslint": "^6.5.1",
+    "typescript": "^3.6.3"
+  }
+}
