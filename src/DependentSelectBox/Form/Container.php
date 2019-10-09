@@ -7,7 +7,7 @@ use Nette\Forms\Container as NetteContainer;
 class Container extends NetteContainer
 {
 
-    // phpcs:disable
 	use DependentFormContainer;
-	// phpcs:enable
+
+	//
 }

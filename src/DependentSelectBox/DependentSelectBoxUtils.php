@@ -53,9 +53,9 @@ trait DependentSelectBoxUtils
 	private function getCurrentPrompt(): string
 	{
 		if (Arrays::isEmpty($this->getItems())) {
-			return $this->translate($this->getPrompt());
+			return (string)$this->translate($this->getPrompt());
 		}
-		return $this->translate('forms.general.choose');
+		return (string)$this->translate('forms.general.choose');
 	}
 
 	private function getDefaultData(): DependentData

@@ -22,7 +22,7 @@ class LoadDependentData
 	/**
 	 * @param DependentSelectBox[] $dependentSelectBoxes
 	 * @param string $json
-	 * @return mixed[]
+	 * @return array<int|string, array<string, bool|string|null>>
 	 * @throws DependentCallbackException
 	 * @throws JsonException
 	 */
@@ -62,7 +62,7 @@ class LoadDependentData
 
 	private function containsParent(DependentSelectBox $dependentSelectBox, string $htmlId): bool
 	{
-		//TODO: Llook for parents recursively
+		//TODO: Look for parents recursively
 		foreach ($dependentSelectBox->getParents() as $control) {
 			if ($control->getHtmlId() === $htmlId) {
 				return true;
@@ -144,10 +144,7 @@ class LoadDependentData
 	 */
 	private function getValue(BaseControl $control, array $data)
 	{
-		if (isset($data[$control->getHtmlName()])) {
-			return $data[$control->getHtmlName()];
-		}
-		return null;
+		return $data[$control->getHtmlName()] ?? null;
 	}
 
 	/**

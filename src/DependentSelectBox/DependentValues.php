@@ -66,15 +66,6 @@ class DependentValues
 		return $this->format($this->values);
 	}
 
-	/**
-	 * @param string $name
-	 * @return int|string|null
-	 */
-	public function getSingleValue(string $name)
-	{
-		return $this->getContainerValues()[$name];
-	}
-
 	public function getContainerValues(): ArrayHash
 	{
 		return $this->format($this->containerValues);
