@@ -10,5 +10,4 @@ class Form extends NetteForm
 	use DependentFormContainer;
 	use DependentFormControls;
 
-	//
 }

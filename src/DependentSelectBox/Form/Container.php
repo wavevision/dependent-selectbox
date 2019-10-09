@@ -9,5 +9,4 @@ class Container extends NetteContainer
 
 	use DependentFormContainer;
 
-	//
 }
