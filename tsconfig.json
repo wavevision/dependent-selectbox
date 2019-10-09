@@ -1,3 +1,7 @@
 {
-  "extends": "@wavevision/coding-standard/ts/tsconfig.json"
+  "extends": "@wavevision/coding-standard/ts/tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "typeRoots": ["./node_modules/@types", "./src/assets/types"]
+  }
 }
