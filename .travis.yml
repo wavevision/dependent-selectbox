@@ -30,11 +30,7 @@ jobs:
     - stage: "PHPStan"
       script: composer phing phpstan
     - stage: "PHP Tests"
-      install:
-        - wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
-      script:
-        - composer phing test:coverage
-        - php php-coveralls.phar --verbose --config .coveralls.yml --clover temp/coverage/php/coverage.xml
+      script: composer phing test:ci
     - stage: "ESLint"
       script: yarn eslint
     - stage: Prettier
