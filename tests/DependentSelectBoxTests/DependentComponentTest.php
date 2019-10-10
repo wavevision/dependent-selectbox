@@ -15,6 +15,7 @@ use PHPUnit\Framework\TestCase;
 use Wavevision\DependentSelectBox\LoadDependentData;
 use Wavevision\DependentSelectBoxTests\Presenters\TestComponent;
 use Wavevision\DependentSelectBoxTests\Presenters\TestPresenter;
+use Wavevision\Utils\Arrays;
 
 class DependentComponentTest extends TestCase
 {
@@ -23,7 +24,7 @@ class DependentComponentTest extends TestCase
 	{
 		$this->assertInstanceOf(
 			TextResponse::class,
-			$this->runPresenter(['do' => $this->getFormSubmit()], ['one' => '1'], null, false)
+			$this->runPresenter($this->getFormSubmit(), ['one' => '1'], null, false)
 		);
 	}
 
@@ -47,6 +48,32 @@ class DependentComponentTest extends TestCase
 	{
 		$this->expectException(InvalidStateException::class);
 		$this->runPresenter($this->getComponentSignal());
+	}
+
+	private function getComponentParam(string $param): string
+	{
+		return TestPresenter::COMPONENT . '-' . $param;
+	}
+
+	/**
+	 * @return string[]
+	 */
+	private function getComponentSignal(): array
+	{
+		return ['do' => $this->getComponentParam('loadDependentData')];
+	}
+
+	private function getFormParam(string $param, string $prefix = 'frm-'): string
+	{
+		return $prefix . $this->getComponentParam(TestComponent::FORM) . '-' . $param;
+	}
+
+	/**
+	 * @return string[]
+	 */
+	private function getFormSubmit(): array
+	{
+		return ['do' => $this->getFormParam('submit', '')];
 	}
 
 	/**
@@ -78,32 +105,10 @@ class DependentComponentTest extends TestCase
 			new Request(
 				$presenterName,
 				IRequest::POST,
-				array_merge([TestPresenter::ACTION_KEY => TestPresenter::DEFAULT_ACTION], $query),
+				Arrays::mergeAllRecursive([TestPresenter::ACTION_KEY => TestPresenter::DEFAULT_ACTION], $query),
 				$post
 			)
 		);
 	}
 
-	private function getComponentParam(string $param): string
-	{
-		return TestPresenter::COMPONENT . '-' . $param;
-	}
-
-	/**
-	 * @return string[]
-	 */
-	private function getComponentSignal(): array
-	{
-		return ['do' => $this->getComponentParam('loadDependentData')];
-	}
-
-	private function getFormParam(string $param): string
-	{
-		return 'frm-' . $this->getComponentParam(TestComponent::FORM) . '-' . $param;
-	}
-
-	private function getFormSubmit(): string
-	{
-		return $this->getComponentParam(TestComponent::FORM . '-submit');
-	}
 }

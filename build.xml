@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="Wavevision DependentSelectbox" default="init">
-    <property name="bin" value="vendor/bin" />
+    <property name="bin" value="vendor/bin"/>
+    <property name="coverage" value="${temp}/coverage/php"/>
     <property name="ruleset" value="codesniffer-ruleset.xml"/>
     <property name="src" value="src"/>
     <property name="temp" value="temp"/>
@@ -97,8 +98,8 @@
                 passthru="true"
                 checkreturn="true"
         >
-            <arg value="--coverage-clover=${temp}/coverage.xml"/>
-            <arg value="--coverage-html=${temp}/coverage"/>
+            <arg value="--coverage-clover=${coverage}/coverage.xml"/>
+            <arg value="--coverage-html=${coverage}/html"/>
         </exec>
     </target>
 </project>

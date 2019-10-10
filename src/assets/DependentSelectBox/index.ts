@@ -22,7 +22,7 @@ class DependentSelectBox {
 
   private naja: Naja;
 
-  private init = (): void => {
+  public init = (): void => {
     const dependentSelectBoxes = document.querySelectorAll(
       DEPENDENT_SELECT_BOX_SELECTOR,
     ) as NodeListOf<HTMLInputElement>;
@@ -44,7 +44,7 @@ class DependentSelectBox {
     }
   };
 
-  private getParents = (dependentSelectBox: HTMLElement): Parents => {
+  public getParents = (dependentSelectBox: HTMLElement): Parents => {
     const parentsData = dependentSelectBox.getAttribute(PARENTS_DATA);
     if (parentsData) {
       return JSON.parse(parentsData);
@@ -52,7 +52,7 @@ class DependentSelectBox {
     return [];
   };
 
-  private getParentsData = (
+  public getParentsData = (
     form: HTMLFormElement,
     parents: Parents,
   ): ParentsValues => {
@@ -68,7 +68,7 @@ class DependentSelectBox {
     return data;
   };
 
-  private getParentValue = (element: HTMLInputElement): ParentValue => {
+  public getParentValue = (element: HTMLInputElement): ParentValue => {
     if (element.type === 'checkbox') return element.checked;
     const value = element.value.trim();
     if (value === '') return null;
@@ -77,7 +77,7 @@ class DependentSelectBox {
     return value;
   };
 
-  private handleChange = (
+  public handleChange = (
     parents: Parents,
     dependentSelectBoxes: DependentSelectBoxes,
   ) => (event: Event): void => {
@@ -97,7 +97,7 @@ class DependentSelectBox {
     });
   };
 
-  private handleResponse = (
+  public handleResponse = (
     form: HTMLFormElement,
     dependentSelectBoxes: DependentSelectBoxes,
     response: Response,
@@ -112,7 +112,7 @@ class DependentSelectBox {
     this.naja.fireEvent(EVENT_LOADED, { form, dependentSelectBoxes });
   };
 
-  private handleRequest = async (
+  public handleRequest = async (
     form: HTMLFormElement,
     dependentSelectBoxes: DependentSelectBoxes,
     data: { data: ParentsValues; trigger: string },
