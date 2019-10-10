@@ -9,30 +9,25 @@ jobs:
     - stage: PHP
       language: php
       php: 7.2
-    - before_script: composer install
-    - script: composer phing lint
-      name: "Parallel Lint"
-    - script: composer phing phpcs
-      name: "CodeSniffer"
-    - script: composer phing phpstan
-      name: "PHPStan"
-    - script: composer phing test:ci
-      name: "Tests"
+      before_script: composer install
+      script:
+        - composer phing lint
+        - composer phing phpcs
+        - composer phing phpstan
+        - composer phing test:ci
     - stage: TypeScript
       language: node_js
       node_js: 10.16.0
-    - before_install:
+      before_install:
         - sudo apt-key adv --fetch-keys http://dl.yarnpkg.com/debian/pubkey.gpg
         - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
         - sudo apt-get update -qq
         - sudo apt-get install -y -qq yarn
-    - before_script: yarn install
-    - script: yarn eslint
-      name: "ESLint"
-    - script: yarn prettier
-      name: "Prettier"
-    - script: yarn test:ci
-      name: "Tests"
+      before_script: yarn install
+      script:
+        - yarn eslint
+        - yarn prettier
+        - yarn test:ci
 
 
 cache:
