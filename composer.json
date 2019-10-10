@@ -38,7 +38,8 @@
     "nette/application": "^3.0",
     "phpstan/phpstan": "^0.11.16",
     "phpunit/phpunit": "^8.4",
-    "latte/latte": "^2.5"
+    "latte/latte": "^2.5",
+    "phing/phing": "^2.16"
   },
   "scripts": {
     "phing": "phing"
