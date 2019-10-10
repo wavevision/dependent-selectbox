@@ -10,11 +10,14 @@ jobs:
       language: php
       php: 7.2
       install: composer install
-      script:
-        - composer phing lint
-        - composer phing phpcs
-        - composer phing phpstan
-        - composer phing test:ci
+    - script: composer phing lint
+      name: "Parallel Lint"
+    - script: composer phing phpcs
+      name: "CodeSniffer"
+    - script: composer phing phpstan
+      name: "PHPStan"
+    - script: composer phing test:ci
+      name: "Tests"
     - stage: TypeScript
       language: node_js
       node_js: 10.16.0
