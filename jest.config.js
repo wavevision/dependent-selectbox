@@ -3,7 +3,7 @@ module.exports = {
   testPathIgnorePatterns: ['<rootDir>/node_modules/'],
   moduleDirectories: ['node_modules', 'src/assets'],
   coverageDirectory: '<rootDir>/temp/coverage/ts',
-  coverageReporters: ['html', 'lcov', 'text'],
+  coverageReporters: ['clover', 'html', 'text'],
   collectCoverageFrom: [
     'src/assets/**/*.ts',
     '!src/assets/**/*.d.ts',

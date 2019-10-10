@@ -57,7 +57,7 @@
     "prettier": "prettier '**/*.ts'",
     "prettier:fix": "yarn prettier --write",
     "test": "jest",
-    "test:ci": "jest --coverage && cat temp/coverage/ts/lcov.info | coveralls --verbose",
+    "test:ci": "jest --coverage && cat temp/coverage/ts/clover.xml | coveralls --verbose",
     "test:coverage": "jest --coverage || true",
     "ts": "tsc --project tsconfig.json",
     "ts:webpack": "cross-env TS_NODE_PROJECT=\"webpack/tsconfig.json\""
