@@ -36,7 +36,7 @@ jobs:
     - stage: Prettier
       script: yarn prettier
     - stage: "TS Tests"
-      script: yart test:ci
+      script: yarn test:ci
 
 
 cache:
