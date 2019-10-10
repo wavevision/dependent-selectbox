@@ -23,20 +23,22 @@ before_script:
 
 jobs:
   include:
-    - stage: "PHP Parallel Lint"
-      script: composer phing lint
-    - stage: "PHP CodeSniffer"
-      script: composer phing phpcs
-    - stage: "PHPStan"
-      script: composer phing phpstan
-    - stage: "PHP Tests"
-      script: composer phing test:ci
-    - stage: "ESLint"
-      script: yarn eslint
-    - stage: Prettier
-      script: yarn prettier
-    - stage: "TS Tests"
-      script: yarn test:ci
+    - stage: PHP
+    - script: composer phing lint
+      name: "Parallel Lint"
+    - script: composer phing phpcs
+      name: "CodeSniffer"
+    - script: composer phing phpstan
+      name: "PHPStan"
+    - script: composer phing test:ci
+      name: "Tests"
+    - stage: TypeScript
+    - script: yarn eslint
+      name: "ESLint"
+    - script: yarn prettier
+      name: "Prettier"
+    - script: yarn test:ci
+      name: "Tests"
 
 
 cache:
