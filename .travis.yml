@@ -7,7 +7,7 @@ git:
 jobs:
   include:
     - stage: PHP
-      before_script:
+      before_install:
         - composer install
       language: php
       php: 7.2
@@ -28,7 +28,6 @@ jobs:
         - wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
         - source $HOME/.nvm/nvm.sh
         - nvm install 10.16.0
-      before_script:
         - yarn install
       language: javascript
     - script: yarn eslint
