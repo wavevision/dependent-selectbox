@@ -23,29 +23,23 @@ before_script:
 
 jobs:
   include:
-    - stage: ParallelLint
-      name: "PHP Parallel Lint"
+    - stage: "PHP Parallel Lint"
       script: composer phing lint
-    - stage: CodeSniffer
-      name: "PHP CodeSniffer"
+    - stage: "PHP CodeSniffer"
       script: composer phing phpcs
-    - stage: PHPStan
-      name: "PHPStan"
+    - stage: "PHPStan"
       script: composer phing phpstan
-    - stage: PHPTest
-      name: "PHP Tests"
+    - stage: "PHP Tests"
       install:
         - wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
       script:
         - composer phing test:coverage
         - php php-coveralls.phar --verbose --config .coveralls.yml --clover temp/coverage/php/coverage.xml
-    - stage: ESLint
-      name: "ESLint"
+    - stage: "ESLint"
       script: yarn eslint
     - stage: Prettier
       script: yarn prettier
-    - stage: TSTest
-      name: "TS Tests"
+    - stage: "TS Tests"
       script: yart test:ci
 
 
