@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project name="Wavevision DependentSelectbox" default="init">
+<project name="Wavevision DependentSelectBox" default="init">
     <property name="bin" value="vendor/bin"/>
     <property name="coverage" value="${temp}/coverage/php"/>
     <property name="coverageClover" value="${coverage}/coverage.xml"/>
