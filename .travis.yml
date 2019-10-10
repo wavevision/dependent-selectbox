@@ -4,11 +4,22 @@ dist: xenial
 git:
   depth: 1
 
+before_install:
+  - sudo apt-key adv --fetch-keys http://dl.yarnpkg.com/debian/pubkey.gpg
+  - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  - sudo apt-get update -qq
+  - sudo apt-get install -y -qq yarn
+  - wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
+  - source $HOME/.nvm/nvm.sh
+  - nvm install 10.16.0
+
+before_script:
+  - composer install
+  - yarn install
+
 jobs:
   include:
     - stage: PHP
-      before_install:
-        - composer install
       language: php
       php: 7.2
     - script: composer phing lint
@@ -20,15 +31,6 @@ jobs:
     - script: composer phing test:ci
       name: "Tests"
     - stage: TypeScript
-      before_install:
-        - sudo apt-key adv --fetch-keys http://dl.yarnpkg.com/debian/pubkey.gpg
-        - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-        - sudo apt-get update -qq
-        - sudo apt-get install -y -qq yarn
-        - wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
-        - source $HOME/.nvm/nvm.sh
-        - nvm install 10.16.0
-        - yarn install
       language: javascript
     - script: yarn eslint
       name: "ESLint"
@@ -39,10 +41,10 @@ jobs:
 
 
 cache:
-  yarn: true
   directories:
     - $HOME/.composer/cache
     - node_modules
+  yarn: true
 
 notifications:
   webhooks:
