@@ -1,6 +1,5 @@
 os: linux
 dist: xenial
-language: generic
 
 php:
   - 7.2
@@ -24,6 +23,7 @@ before_script:
 jobs:
   include:
     - stage: PHP
+      language: php
     - script: composer phing lint
       name: "Parallel Lint"
     - script: composer phing phpcs
@@ -33,6 +33,7 @@ jobs:
     - script: composer phing test:ci
       name: "Tests"
     - stage: TypeScript
+      language: javascript
     - script: yarn eslint
       name: "ESLint"
     - script: yarn prettier
