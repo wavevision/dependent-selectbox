@@ -54,7 +54,7 @@
     "eslint": "eslint '**/*.ts'",
     "eslint:fix": "yarn eslint --fix",
     "fix": "run-s ts eslint:fix prettier:fix test",
-    "prettier": "prettier '**/*.ts'",
+    "prettier": "prettier --check '**/*.ts'",
     "prettier:fix": "yarn prettier --write",
     "test": "jest",
     "test:ci": "jest --coverage && cat temp/coverage/ts/lcov.info | coveralls --verbose",
