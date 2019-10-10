@@ -1,9 +1,6 @@
 os: linux
 dist: xenial
 
-php:
-  - 7.2
-
 git:
   depth: 1
 
@@ -24,6 +21,7 @@ jobs:
   include:
     - stage: PHP
       language: php
+      php: 7.2
     - script: composer phing lint
       name: "Parallel Lint"
     - script: composer phing phpcs
