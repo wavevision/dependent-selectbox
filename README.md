@@ -145,8 +145,7 @@ Please, refer to [Naja docs](https://naja.js.org) to find out more about its ext
 
 If you don't use Naja elsewhere in your project an you don't want to set it up, this is your way to go.
 
-| ⚠️ **WARNING:** This might collide with other Nette AJAX libraries, if used! |
-| --- |
+⚠️ **WARNING:** This might collide with other Nette AJAX libraries, if used!
 
 ```typescript
 import '@wavevision/dependent-selectbox/dist/dependentSelectBox.all.min';
