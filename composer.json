@@ -29,18 +29,18 @@
   },
   "require": {
     "php": ">=7.2",
-    "wavevision/utils": "dev-master",
-    "nette/forms": "^3.0"
+    "nette/forms": "^3.0",
+    "wavevision/utils": "^1.0"
   },
   "require-dev": {
-    "wavevision/coding-standard": "dev-master",
     "jakub-onderka/php-parallel-lint": "^1.0",
     "nette/application": "^3.0",
     "phpstan/phpstan": "^0.11.16",
     "phpunit/phpunit": "^8.4",
     "latte/latte": "^2.5",
     "phing/phing": "^2.16",
-    "php-coveralls/php-coveralls": "^2.1"
+    "php-coveralls/php-coveralls": "^2.1",
+    "wavevision/coding-standard": "^1.1"
   },
   "scripts": {
     "phing": "phing"
