@@ -88,7 +88,7 @@ class FormComponent extends Control
     protected function createComponentForm(): Form
     {
         // create your form as you are used to
-        ...
+        // ...
         //
         $form->addDependentSelectBox('name', 'Label', $form['someParentControl'])
             ->setDependentCallback(function (DependentValues $values): DependentData {
@@ -96,7 +96,7 @@ class FormComponent extends Control
                 $formattedValues = $values->getValues();
                 $data = new DependentData();
                 if ($formattedValues->someParentControl === 'someDependentValue') {
-                    $data->setItems(['firstItem => 'firstValue']);
+                    $data->setItems(['firstItem' => 'firstValue']);
                 }
                 return $data;
             })
@@ -107,7 +107,7 @@ class FormComponent extends Control
             // if $form['someOtherControl'] has 'someValue', treat $form['someControl'] as parent, otherwise ignore it
             ->addConditionalParent($form['someControl'], $form['someOtherControl'], 'someValue');
         // add form handlers etc.
-        ...
+        // ...
         //
         return $form;
     }
@@ -145,7 +145,8 @@ Please, refer to [Naja docs](https://naja.js.org) to find out more about its ext
 
 If you don't use Naja elsewhere in your project an you don't want to set it up, this is your way to go.
 
-> ⚠ **WARNING**: This might collide with other Nette AJAX libraries! Please, check the docs to find out.
+| ⚠️ **WARNING:** This might collide with other Nette AJAX libraries, if used! |
+| --- |
 
 ```typescript
 import '@wavevision/dependent-selectbox/dist/dependentSelectBox.all.min';
