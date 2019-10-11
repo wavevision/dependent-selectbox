@@ -2,14 +2,11 @@
   "name": "@wavevision/dependent-selectbox",
   "version": "1.0.0",
   "description": "Dependent selectbox component for Nette forms.",
-  "engines": {
-    "node": "10.16.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wavevision/dependent-selectbox.git"
   },
-  "main": "dist/dependentSelectBox.min.js",
-  "author": {
-    "name": "Wavevision s.r.o.",
-    "email": "info@wavevision.com"
-  },
+  "author": "Wavevision s.r.o <info@wavevision.com>",
   "contributors": [
     {
       "name": "Jakub Filla",
@@ -21,7 +18,13 @@
     }
   ],
   "license": "MIT",
-  "private": false,
+  "bugs": {
+    "url": "https://github.com/wavevision/dependent-selectbox/issues"
+  },
+  "homepage": "https://github.com/wavevision/dependent-selectbox",
+  "engines": {
+    "node": "10.16.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@types/jest": "^24.0.18",
