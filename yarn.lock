@@ -1218,9 +1218,9 @@
     semver "^6.3.0"
 
 "@wavevision/coding-standard@^1.0.6":
-  version "1.0.13"
-  resolved "https://registry.yarnpkg.com/@wavevision/coding-standard/-/coding-standard-1.0.13.tgz#3a326f0577c8c87b715fe8118d941b5aaab4a72b"
-  integrity sha512-uI0o3MC2HgES10a5gG7PAskq6+DWjIgfGJq4wzrav8+1JLTIGwQgCkoZ/HHqN1RIFmp+D3nTAurN5IH6BYfb+Q==
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@wavevision/coding-standard/-/coding-standard-1.1.1.tgz#4fcfcb437f0d055c5f4d03c09f3c8460f4dd8644"
+  integrity sha512-URL3GrlorjBrymwEErrdeHHe0mMBtZWNpGPe/Bj+az71y5P1UXzJdmk4YJLE6IbwMYe8EIWd4NiRRnk0mwLWww==
   dependencies:
     "@babel/core" "^7.6.2"
     "@babel/plugin-proposal-class-properties" "^7.5.5"
@@ -2271,7 +2271,12 @@ commander@2.20.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.0.tgz#d58bb2b5c1ee8f87b0d340027e9e94e222c5a422"
   integrity sha512-7j2y+40w61zy6YC2iRNpUe/NwhNyoXrYpHMrSunaMG64nRnaf96zO/KMQR4OyN/UnE5KLyEBnKHd4aG3rskjpQ==
 
-commander@^2.11.0, commander@^2.19.0, commander@^2.20.0:
+commander@^2.11.0:
+  version "2.20.3"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
+  integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
+
+commander@^2.19.0, commander@^2.20.0:
   version "2.20.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.1.tgz#3863ce3ca92d0831dcf2a102f5fb4b5926afd0f9"
   integrity sha512-cCuLsMhJeWQ/ZpsFTbE765kvVfoeSddc4nU3up4fV+fDBcfUXnbITJ+JzhkdjzOqhURjZgujxaioam4RM9yGUg==

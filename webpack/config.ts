@@ -31,9 +31,7 @@ const config: Configuration = {
     umdNamedDefine: true,
   },
   target: 'web',
-  module: {
-    rules: makeLoaders(),
-  },
+  module: { rules: makeLoaders() },
   optimization: {
     concatenateModules: true,
     minimizer: [
@@ -48,9 +46,7 @@ const config: Configuration = {
             warnings: false,
           },
           mangle: true,
-          output: {
-            comments: false,
-          },
+          output: { comments: false },
         },
       }),
     ],
@@ -58,9 +54,7 @@ const config: Configuration = {
   },
   plugins: [new CleanWebpackPlugin(), new optimize.OccurrenceOrderPlugin(true)],
   stats: 'minimal',
-  resolve: {
-    extensions: ['.js', '.ts'],
-  },
+  resolve: { extensions: ['.js', '.ts'] },
 };
 
 export default config;

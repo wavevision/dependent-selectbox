@@ -7,14 +7,8 @@ const NajaMock: Naja = {
     },
   },
   fireEvent: jest.fn(),
-  formsHandler: {
-    netteForms: {
-      validateForm: jest.fn(),
-    },
-  },
-  snippetHandler: {
-    addEventListener: jest.fn(),
-  },
+  formsHandler: { netteForms: { validateForm: jest.fn() } },
+  snippetHandler: { addEventListener: jest.fn() },
   initialize: jest.fn(),
   makeRequest: jest.fn(),
   registerExtension: jest.fn(),
