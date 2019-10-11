@@ -1,4 +1,9 @@
 module.exports = {
+  globals: {
+    'ts-jest': {
+      isolatedModules: true,
+    },
+  },
   testMatch: ['<rootDir>/src/assets/**/tests/**/*.test.ts'],
   testPathIgnorePatterns: ['<rootDir>/node_modules/'],
   moduleDirectories: ['node_modules', 'src/assets'],
@@ -10,7 +15,5 @@ module.exports = {
     '!src/assets/**/tests/**',
     '!**/node_modules/**',
   ],
-  transform: {
-    '.*': 'ts-jest',
-  },
+  preset: 'ts-jest',
 };

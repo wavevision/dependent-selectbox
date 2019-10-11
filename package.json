@@ -5,7 +5,7 @@
   "engines": {
     "node": "10.16.0"
   },
-  "main": "index.js",
+  "main": "dist/dependentSelectBox.min.js",
   "author": {
     "name": "Wavevision s.r.o.",
     "email": "info@wavevision.com"

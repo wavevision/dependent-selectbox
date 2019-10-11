@@ -36,7 +36,6 @@ class TestComponent extends Control
 	private function createForm(): Form
 	{
 		$form = new Form();
-		$form->addProtection();
 		$form->addSelect('one', 'One', ['something', 'something else']);
 		$container = $form->addContainer('container');
 		$container->addSelect('conditionalAncestor', 'Conditional ancestor', ['haha', 'hehe']);
@@ -50,4 +49,5 @@ class TestComponent extends Control
 			->addConditionalParent($container['conditional'], $container['conditionalAncestor'], 1);
 		return $form;
 	}
+
 }

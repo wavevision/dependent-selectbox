@@ -35,6 +35,7 @@ const config: Configuration = {
     rules: makeLoaders(),
   },
   optimization: {
+    concatenateModules: true,
     minimizer: [
       new TerserPlugin({
         extractComments: false,

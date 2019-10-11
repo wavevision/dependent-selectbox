@@ -17,7 +17,7 @@ import {
 class DependentSelectBox {
   public constructor(naja: Naja) {
     this.naja = naja;
-    this.naja.addEventListener('init', this.init);
+    this.naja.addEventListener('load', this.init);
   }
 
   private naja: Naja;
