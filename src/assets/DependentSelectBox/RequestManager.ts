@@ -1,3 +1,5 @@
+import { Naja } from '../types/naja';
+
 import {
   DependentSelectBoxes,
   FormElement,

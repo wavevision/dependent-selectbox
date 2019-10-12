@@ -1,17 +1,16 @@
 import path from 'path';
 
+// eslint-disable-next-line
+// @ts-ignore
+import DtsPlugin from 'dts-bundle-webpack';
 import TerserPlugin from 'terser-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import { optimize, Configuration } from 'webpack';
 
-import makeLoaders from './loaders';
+import pkg from '../package.json';
 
-const assets = path.resolve(__dirname, '..', 'src', 'assets');
-const dir = '/dist';
-const index = path.join(assets, 'index.ts');
-const naja = path.join(assets, 'naja.ts');
-const name = 'dependentSelectBox';
-const output = path.join(__dirname, '..', dir);
+import makeLoaders from './loaders';
+import { assets, index, naja, name, output } from './constants';
 
 const config: Configuration = {
   devtool: 'source-map',
@@ -52,7 +51,18 @@ const config: Configuration = {
     ],
     nodeEnv: 'production',
   },
-  plugins: [new CleanWebpackPlugin(), new optimize.OccurrenceOrderPlugin(true)],
+  plugins: [
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ['**/*', '!*.d.ts'],
+    }),
+    new DtsPlugin({
+      main: path.join(assets, 'index.d.ts'),
+      name: pkg.name,
+      out: path.join(output, 'index.d.ts'),
+      outputAsModuleFolder: true,
+    }),
+    new optimize.OccurrenceOrderPlugin(true),
+  ],
   stats: 'minimal',
   resolve: { extensions: ['.js', '.ts'] },
 };

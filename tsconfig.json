@@ -2,6 +2,6 @@
   "extends": "@wavevision/coding-standard/ts/tsconfig.json",
   "compilerOptions": {
     "target": "es5",
-    "typeRoots": ["./node_modules/@types", "./src/assets/types"]
+    "typeRoots": ["./node_modules/@types"]
   }
 }

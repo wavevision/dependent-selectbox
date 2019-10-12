@@ -2,12 +2,12 @@ declare class NajaExtension {
   public constructor(naja: Naja, ...optionalArguments: any);
 }
 
-declare interface NajaDefaultOptions {
+export interface NajaDefaultOptions {
   selector: { name: string; query: string };
 }
 
-declare interface Naja {
-  readonly addEventListener: (event: string, callback: Function) => any;
+export interface Naja {
+  readonly addEventListener: (event: string, callback: Function) => void;
   defaultOptions: NajaDefaultOptions;
   readonly fireEvent: (event: string, args: any) => void;
   formsHandler: {
@@ -40,10 +40,4 @@ declare interface Naja {
     selector: string;
     readonly submitForm: (form: HTMLFormElement) => void;
   };
-}
-
-declare var Naja: Naja;
-
-declare module 'naja' {
-  export default Naja;
 }

@@ -1,3 +1,5 @@
+import { Naja } from '../types/naja';
+
 import ParentsManager from './ParentsManager';
 import RequestManager from './RequestManager';
 import { DependentSelectBoxes, FormElement, Parents } from './types';

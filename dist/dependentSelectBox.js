@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -99,15 +99,74 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-
-// CONCATENATED MODULE: ./src/assets/DependentSelectBox/constants.ts
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DATA_LINK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return DATA_PARENT_LISTENER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return DATA_PARENTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return DATA_SELECT_BOX; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return EVENT_LOADED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return EVENT_LOADING; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return SELECT_BOX_SELECTOR; });
 var DATA_LINK = 'data-dependent-data-link';
-var DEPENDENT_SELECT_BOX_SELECTOR = '[data-dependent-select-box]';
+var DATA_PARENT_LISTENER = 'data-has-dependent-listener';
+var DATA_PARENTS = 'data-parents';
+var DATA_SELECT_BOX = 'data-dependent-select-box';
 var EVENT_LOADED = 'dependentSelectBoxLoaded';
 var EVENT_LOADING = 'dependentSelectBoxLoading';
-var PARENTS_DATA = 'data-parents';
-var PARENT_HAS_EVENT_LISTENER = 'data-has-dependent-listener';
+var SELECT_BOX_SELECTOR = "[" + DATA_SELECT_BOX + "]";
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXTERNAL MODULE: ./src/assets/DependentSelectBox/constants.ts
+var constants = __webpack_require__(0);
+
+// CONCATENATED MODULE: ./src/assets/DependentSelectBox/ParentsManager.ts
+
+var getParents = function (selectBox) {
+    var parentsData = selectBox.getAttribute(constants["b" /* DATA_PARENTS */]);
+    if (parentsData) {
+        return JSON.parse(parentsData);
+    }
+    return [];
+};
+var getParentValue = function (element) {
+    if (element.type === 'checkbox')
+        return element.checked;
+    var value = element.value.trim();
+    if (value === '')
+        return null;
+    var number = Number(value);
+    if (!Number.isNaN(number))
+        return number;
+    return value;
+};
+var getParentsData = function (form, parents) {
+    var data = {};
+    for (var _i = 0, parents_1 = parents; _i < parents_1.length; _i++) {
+        var parent = parents_1[_i];
+        var element = form.elements.namedItem(parent);
+        if (element) {
+            data[element.name] = getParentValue(element);
+        }
+    }
+    return data;
+};
+var parentHasListener = function (parent) {
+    return parent.getAttribute(constants["c" /* DATA_PARENT_LISTENER */]) !== null;
+};
+var setParentHasListener = function (parent) {
+    return parent.setAttribute(constants["c" /* DATA_PARENT_LISTENER */], 'true');
+};
+/* harmony default export */ var ParentsManager = ({
+    getParents: getParents,
+    getParentsData: getParentsData,
+    parentHasListener: parentHasListener,
+    setParentHasListener: setParentHasListener,
+});
 
 // CONCATENATED MODULE: ./src/assets/DependentSelectBox/RequestManager.ts
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -153,23 +212,23 @@ var RequestManager_RequestManager = /** @class */ (function () {
         this.handleResponse = function (form, dependentSelectBoxes, response) {
             for (var id in response) {
                 var element = document.getElementById(id);
-                if (element && element instanceof HTMLSelectElement) {
+                if (element && element.getAttribute(constants["d" /* DATA_SELECT_BOX */])) {
                     element.disabled = response[id].disabled;
                     element.innerHTML = response[id].options;
                 }
             }
-            _this.naja.fireEvent(EVENT_LOADED, { form: form, dependentSelectBoxes: dependentSelectBoxes });
+            _this.naja.fireEvent(constants["e" /* EVENT_LOADED */], { form: form, dependentSelectBoxes: dependentSelectBoxes });
         };
         this.handleRequest = function (form, dependentSelectBoxes, data) { return __awaiter(_this, void 0, Promise, function () {
             var link, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        link = form.getAttribute(DATA_LINK);
+                        link = form.getAttribute(constants["a" /* DATA_LINK */]);
                         if (!link) {
                             throw new Error("Form \"" + form.id + "\" must have \"data-dependent-data-link\" attribute!");
                         }
-                        this.naja.fireEvent(EVENT_LOADING, { form: form, dependentSelectBoxes: dependentSelectBoxes });
+                        this.naja.fireEvent(constants["f" /* EVENT_LOADING */], { form: form, dependentSelectBoxes: dependentSelectBoxes });
                         return [4 /*yield*/, this.naja.makeRequest('POST', link, data, {
                                 dataType: 'json',
                                 history: false,
@@ -187,50 +246,6 @@ var RequestManager_RequestManager = /** @class */ (function () {
     return RequestManager;
 }());
 /* harmony default export */ var DependentSelectBox_RequestManager = (RequestManager_RequestManager);
-
-// CONCATENATED MODULE: ./src/assets/DependentSelectBox/ParentsManager.ts
-
-var getParents = function (selectBox) {
-    var parentsData = selectBox.getAttribute(PARENTS_DATA);
-    if (parentsData) {
-        return JSON.parse(parentsData);
-    }
-    return [];
-};
-var getParentValue = function (element) {
-    if (element.type === 'checkbox')
-        return element.checked;
-    var value = element.value.trim();
-    if (value === '')
-        return null;
-    var number = Number(value);
-    if (!Number.isNaN(number))
-        return number;
-    return value;
-};
-var getParentsData = function (form, parents) {
-    var data = {};
-    for (var _i = 0, parents_1 = parents; _i < parents_1.length; _i++) {
-        var parent = parents_1[_i];
-        var element = form.elements.namedItem(parent);
-        if (element) {
-            data[element.name] = getParentValue(element);
-        }
-    }
-    return data;
-};
-var parentHasListener = function (parent) {
-    return parent.getAttribute(PARENT_HAS_EVENT_LISTENER) !== null;
-};
-var setParentHasListener = function (parent) {
-    return parent.setAttribute(PARENT_HAS_EVENT_LISTENER, 'true');
-};
-/* harmony default export */ var ParentsManager = ({
-    getParents: getParents,
-    getParentsData: getParentsData,
-    parentHasListener: parentHasListener,
-    setParentHasListener: setParentHasListener,
-});
 
 // CONCATENATED MODULE: ./src/assets/DependentSelectBox/DOMManager.ts
 
@@ -253,7 +268,7 @@ var DOMManager_DOMManager = /** @class */ (function () {
             return document.getElementById(id);
         };
         this.findSelectBoxes = function () {
-            return Array.from(document.querySelectorAll(DEPENDENT_SELECT_BOX_SELECTOR));
+            return Array.from(document.querySelectorAll(constants["g" /* SELECT_BOX_SELECTOR */]));
         };
         this.handleChange = function (parents, selectBoxes) { return function (event) {
             var input = event.target;
@@ -306,16 +321,36 @@ var DependentSelectBox_DependentSelectBox = /** @class */ (function () {
     }
     return DependentSelectBox;
 }());
-/* harmony default export */ var assets_DependentSelectBox = (DependentSelectBox_DependentSelectBox);
+/* harmony default export */ var assets_DependentSelectBox = __webpack_exports__["a"] = (DependentSelectBox_DependentSelectBox);
 
-// CONCATENATED MODULE: ./src/assets/index.ts
-/* concated harmony reexport DATA_LINK */__webpack_require__.d(__webpack_exports__, "DATA_LINK", function() { return DATA_LINK; });
-/* concated harmony reexport DEPENDENT_SELECT_BOX_SELECTOR */__webpack_require__.d(__webpack_exports__, "DEPENDENT_SELECT_BOX_SELECTOR", function() { return DEPENDENT_SELECT_BOX_SELECTOR; });
-/* concated harmony reexport EVENT_LOADED */__webpack_require__.d(__webpack_exports__, "EVENT_LOADED", function() { return EVENT_LOADED; });
-/* concated harmony reexport EVENT_LOADING */__webpack_require__.d(__webpack_exports__, "EVENT_LOADING", function() { return EVENT_LOADING; });
-/* concated harmony reexport PARENTS_DATA */__webpack_require__.d(__webpack_exports__, "PARENTS_DATA", function() { return PARENTS_DATA; });
-/* concated harmony reexport PARENT_HAS_EVENT_LISTENER */__webpack_require__.d(__webpack_exports__, "PARENT_HAS_EVENT_LISTENER", function() { return PARENT_HAS_EVENT_LISTENER; });
-/* concated harmony reexport default */__webpack_require__.d(__webpack_exports__, "default", function() { return assets_DependentSelectBox; });
+
+/***/ }),
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DependentSelectBox_constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DATA_LINK", function() { return _DependentSelectBox_constants__WEBPACK_IMPORTED_MODULE_0__["a"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DATA_PARENT_LISTENER", function() { return _DependentSelectBox_constants__WEBPACK_IMPORTED_MODULE_0__["c"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DATA_PARENTS", function() { return _DependentSelectBox_constants__WEBPACK_IMPORTED_MODULE_0__["b"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DATA_SELECT_BOX", function() { return _DependentSelectBox_constants__WEBPACK_IMPORTED_MODULE_0__["d"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EVENT_LOADED", function() { return _DependentSelectBox_constants__WEBPACK_IMPORTED_MODULE_0__["e"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EVENT_LOADING", function() { return _DependentSelectBox_constants__WEBPACK_IMPORTED_MODULE_0__["f"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SELECT_BOX_SELECTOR", function() { return _DependentSelectBox_constants__WEBPACK_IMPORTED_MODULE_0__["g"]; });
+
+/* harmony import */ var _DependentSelectBox__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _DependentSelectBox__WEBPACK_IMPORTED_MODULE_1__["a"]; });
+
 
 
 

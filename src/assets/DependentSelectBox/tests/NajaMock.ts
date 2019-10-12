@@ -1,3 +1,5 @@
+import { Naja } from '../../types/naja';
+
 const NajaMock: Naja = {
   addEventListener: jest.fn(),
   defaultOptions: {

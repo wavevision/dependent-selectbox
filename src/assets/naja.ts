@@ -1,6 +1,8 @@
+// eslint-disable-next-line
+// @ts-ignore
 import naja from 'naja';
 
-import DependentSelectBox from '.';
+import DependentSelectBox from './DependentSelectBox';
 
 naja.registerExtension(DependentSelectBox);
 
