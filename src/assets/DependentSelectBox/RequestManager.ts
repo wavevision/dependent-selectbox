@@ -28,10 +28,10 @@ class RequestManager {
     dependentSelectBoxes: DependentSelectBoxes,
     data: { data: ParentsValues; trigger: string },
   ): Promise<void> => {
-    const link = form.getAttribute(DATA_LINK) as string;
+    const link = form.getAttribute(DATA_LINK);
     if (!link) {
       throw new Error(
-        `Form ${form.id} must have "data-dependent-data-link" attribute!`,
+        `Form "${form.id}" must have "data-dependent-data-link" attribute!`,
       );
     }
     this.naja.fireEvent(EVENT_LOADING, { form, dependentSelectBoxes });
