@@ -76,7 +76,7 @@ class FormComponent extends Control
     public function __construct()
     {
         $this->monitor(Presenter::class, function (): void {
-            // setup form in component - optionally pass form name(default 'form')
+            // setup form in component - optionally pass form name (default 'form')
             $this->dependentComponentSetup();
             if ($this->hasReceivedDependentSignal()) {
                 // if 'loadDependenData' signal received, do anything extra we need
