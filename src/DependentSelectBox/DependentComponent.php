@@ -64,8 +64,7 @@ trait DependentComponent
 			$this->loadDependentData = new LoadDependentData();
 		}
 		$form = $this->getDependentForm();
-		$form
-			->getElementPrototype()
+		$form->getElementPrototype()
 			->setAttribute(
 				'data-dependent-data-link',
 				$this->link('loadDependentData!')
