@@ -1,7 +1,7 @@
-import { DependentSelectBoxes, FormElement, Parents } from './types';
-import { DEPENDENT_SELECT_BOX_SELECTOR } from './constants';
-import RequestManager from './RequestManager';
 import ParentsManager from './ParentsManager';
+import RequestManager from './RequestManager';
+import { DependentSelectBoxes, FormElement, Parents } from './types';
+import { SELECT_BOX_SELECTOR } from './constants';
 
 class DOMManager {
   public constructor(naja: Naja) {
@@ -29,7 +29,7 @@ class DOMManager {
     document.getElementById(id) as FormElement;
 
   public findSelectBoxes = (): DependentSelectBoxes =>
-    Array.from(document.querySelectorAll(DEPENDENT_SELECT_BOX_SELECTOR));
+    Array.from(document.querySelectorAll(SELECT_BOX_SELECTOR));
 
   public handleChange = (
     parents: Parents,

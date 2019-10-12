@@ -1,8 +1,8 @@
+import { DATA_PARENT_LISTENER, DATA_PARENTS } from './constants';
 import { FormElement, Parents, ParentsValues, ParentValue } from './types';
-import { PARENT_HAS_EVENT_LISTENER, PARENTS_DATA } from './constants';
 
 const getParents = (selectBox: HTMLElement): Parents => {
-  const parentsData = selectBox.getAttribute(PARENTS_DATA);
+  const parentsData = selectBox.getAttribute(DATA_PARENTS);
   if (parentsData) {
     return JSON.parse(parentsData);
   }
@@ -33,10 +33,10 @@ const getParentsData = (
 };
 
 const parentHasListener = (parent: HTMLInputElement): boolean =>
-  parent.getAttribute(PARENT_HAS_EVENT_LISTENER) !== null;
+  parent.getAttribute(DATA_PARENT_LISTENER) !== null;
 
 const setParentHasListener = (parent: HTMLInputElement): void =>
-  parent.setAttribute(PARENT_HAS_EVENT_LISTENER, 'true');
+  parent.setAttribute(DATA_PARENT_LISTENER, 'true');
 
 export default {
   getParents,
