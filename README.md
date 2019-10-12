@@ -130,13 +130,13 @@ naja.registerExtension(DependentSelectBox);
 
 As mentioned in features, the extension emits two events you can attach listeners to. They are:
 
-- `dependentSelectBoxLoading`: fires, when loading of dependent data starts
-- `dependentSelectBoxLoaded`: fires, when loading data finished
+- `dependentSelectBoxLoading` – fires, when loading of dependent data starts
+- `dependentSelectBoxLoaded` – fires, when loading data finished
 
 Both events pass an object to their listeners, the object has these properties:
 
-- `form`: an `HTMLFormElement` in which the event has been triggered
-- `dependentSelectBoxes`: a `NodeList<HTMLSelectElement>` containing all dependent select boxes on the current page
+- `form: HTMLFormElement` – the form in which the event has been triggered
+- `dependentSelectBoxes: HTMLSelectElement[]` – array of all dependent select boxes in the form
 
 Please, refer to [Naja docs](https://naja.js.org) to find out more about its extensions.
 

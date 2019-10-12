@@ -1,4 +1,4 @@
-export type DependentSelectBoxes = NodeList<HTMLSelectElement>;
+export type DependentSelectBoxes = HTMLSelectElement[];
 export type FormElement = HTMLInputElement | null;
 export type Parents = Array<string>;
 export type ParentsValues = Record<string, ParentValue>;

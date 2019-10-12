@@ -29,9 +29,7 @@ class DOMManager {
     document.getElementById(id) as FormElement;
 
   public findSelectBoxes = (): DependentSelectBoxes =>
-    document.querySelectorAll(
-      DEPENDENT_SELECT_BOX_SELECTOR,
-    ) as DependentSelectBoxes;
+    Array.from(document.querySelectorAll(DEPENDENT_SELECT_BOX_SELECTOR));
 
   public handleChange = (
     parents: Parents,
@@ -45,11 +43,20 @@ class DOMManager {
         selectBox.disabled = selectBoxParents.includes(input.id);
       }
     }
-    this.requestManager.handleRequest(form, selectBoxes, {
-      trigger: input.id,
-      data: ParentsManager.getParentsData(form, parents),
-    });
+    this.requestManager.handleRequest(
+      form,
+      this.getFormSelectBoxes(form, selectBoxes),
+      {
+        trigger: input.id,
+        data: ParentsManager.getParentsData(form, parents),
+      },
+    );
   };
+
+  private getFormSelectBoxes = (
+    form: HTMLFormElement,
+    selectBoxes: DependentSelectBoxes,
+  ): DependentSelectBoxes => selectBoxes.filter(s => s.form === form);
 
   private isParentTextBased = (parent: HTMLInputElement): boolean =>
     ['text', 'number', 'textarea'].includes(parent.type);
