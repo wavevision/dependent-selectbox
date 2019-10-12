@@ -107,7 +107,7 @@ class DependentSelectBox extends SelectBox
 		$dependentData = ($this->dependentCallback)(
 			new DependentValues($parentsValues, $this->getCurrentContainerValues($parentsValues), $selectedValue)
 		);
-		if (!$dependentData instanceof DependentData) {
+		if (!($dependentData instanceof DependentData)) {
 			throw new DependentCallbackException(
 				sprintf(
 					'Dependent callback for "%s" must return an instance of %s.',
@@ -182,4 +182,5 @@ class DependentSelectBox extends SelectBox
 		$this->disabledWhenEmpty = $disabledWhenEmpty;
 		return $this;
 	}
+
 }
