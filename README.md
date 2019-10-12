@@ -76,7 +76,7 @@ class FormComponent extends Control
     public function __construct()
     {
         $this->monitor(Presenter::class, function (): void {
-            // setup form in component - optionally pass form's (default 'form')
+            // setup form in component - optionally pass form name(default 'form')
             $this->dependentComponentSetup();
             if ($this->hasReceivedDependentSignal()) {
                 // if 'loadDependenData' signal received, do anything extra we need
@@ -103,7 +103,7 @@ class FormComponent extends Control
             ->setDisabledWhenEmpty()
             // if loaded values contain only one item, select it so the user does not have to
             ->setAutoSelectSingleValue()
-            // if 'someOtherControl' has 'someValue', treat 'someControl' as parent, ignore it otherwise
+            // if 'someOtherControl' has 'someValue', treat 'someControl' as parent
             ->addConditionalParent($form['someControl'], $form['someOtherControl'], 'someValue');
         // add form handlers etc.
         // ...
