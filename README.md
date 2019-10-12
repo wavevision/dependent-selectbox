@@ -115,7 +115,7 @@ class FormComponent extends Control
 
 ### Client side
 
-There are a few ways of how to integrate the client side into your project.
+There are a few ways of integrating the client side into your project.
 
 #### 1. Register dependent select box as Naja extension
 
