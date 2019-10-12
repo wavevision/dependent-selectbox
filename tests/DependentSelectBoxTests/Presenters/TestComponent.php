@@ -21,9 +21,6 @@ class TestComponent extends Control
 			TestPresenter::class,
 			function (): void {
 				$this->dependentComponentSetup(self::FORM);
-				if ($this->hasReceivedDependentSignal()) {
-					// do stuff when component loads dependent data
-				}
 			}
 		);
 	}
@@ -49,5 +46,4 @@ class TestComponent extends Control
 			->addConditionalParent($container['conditional'], $container['conditionalAncestor'], 1);
 		return $form;
 	}
-
 }

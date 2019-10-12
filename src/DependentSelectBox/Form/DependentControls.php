@@ -6,7 +6,7 @@ use Iterator;
 use Nette\Forms\Controls\BaseControl;
 use Wavevision\DependentSelectBox\DependentSelectBox;
 
-trait DependentFormControls
+trait DependentControls
 {
 
 	/**

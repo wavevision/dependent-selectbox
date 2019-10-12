@@ -31,7 +31,7 @@ class RequestManager {
     const link = form.getAttribute(DATA_LINK) as string;
     if (!link) {
       throw new Error(
-        `Form ${form.id} must have data-dependent-link attribute!`,
+        `Form ${form.id} must have "data-dependent-data-link" attribute!`,
       );
     }
     this.naja.fireEvent(EVENT_LOADING, { form, dependentSelectBoxes });

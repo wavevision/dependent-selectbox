@@ -167,7 +167,7 @@ var RequestManager_RequestManager = /** @class */ (function () {
                     case 0:
                         link = form.getAttribute(DATA_LINK);
                         if (!link) {
-                            throw new Error("Form " + form.id + " must have data-dependent-link attribute!");
+                            throw new Error("Form " + form.id + " must have \"data-dependent-data-link\" attribute!");
                         }
                         this.naja.fireEvent(EVENT_LOADING, { form: form, dependentSelectBoxes: dependentSelectBoxes });
                         return [4 /*yield*/, this.naja.makeRequest('POST', link, data, {
@@ -188,11 +188,56 @@ var RequestManager_RequestManager = /** @class */ (function () {
 }());
 /* harmony default export */ var DependentSelectBox_RequestManager = (RequestManager_RequestManager);
 
+// CONCATENATED MODULE: ./src/assets/DependentSelectBox/ParentsManager.ts
+
+var getParents = function (selectBox) {
+    var parentsData = selectBox.getAttribute(PARENTS_DATA);
+    if (parentsData) {
+        return JSON.parse(parentsData);
+    }
+    return [];
+};
+var getParentValue = function (element) {
+    if (element.type === 'checkbox')
+        return element.checked;
+    var value = element.value.trim();
+    if (value === '')
+        return null;
+    var number = Number(value);
+    if (!Number.isNaN(number))
+        return number;
+    return value;
+};
+var getParentsData = function (form, parents) {
+    var data = {};
+    for (var _i = 0, parents_1 = parents; _i < parents_1.length; _i++) {
+        var parent = parents_1[_i];
+        var element = form.elements.namedItem(parent);
+        if (element) {
+            data[element.name] = getParentValue(element);
+        }
+    }
+    return data;
+};
+var parentHasListener = function (parent) {
+    return parent.getAttribute(PARENT_HAS_EVENT_LISTENER) !== null;
+};
+var setParentHasListener = function (parent) {
+    return parent.setAttribute(PARENT_HAS_EVENT_LISTENER, 'true');
+};
+/* harmony default export */ var ParentsManager = ({
+    getParents: getParents,
+    getParentsData: getParentsData,
+    parentHasListener: parentHasListener,
+    setParentHasListener: setParentHasListener,
+});
+
 // CONCATENATED MODULE: ./src/assets/DependentSelectBox/DOMManager.ts
 
 
+
 var DOMManager_DOMManager = /** @class */ (function () {
-    function DOMManager(naja, parentsManager) {
+    function DOMManager(naja) {
         var _this = this;
         this.addListeners = function (parent, parents, selectBoxes) {
             var events = ['change'];
@@ -202,7 +247,7 @@ var DOMManager_DOMManager = /** @class */ (function () {
             events.forEach(function (e) {
                 return parent.addEventListener(e, _this.handleChange(parents, selectBoxes));
             });
-            _this.parentsManager.setParentHasListener(parent);
+            ParentsManager.setParentHasListener(parent);
         };
         this.findParent = function (id) {
             return document.getElementById(id);
@@ -216,69 +261,23 @@ var DOMManager_DOMManager = /** @class */ (function () {
             for (var _i = 0, selectBoxes_1 = selectBoxes; _i < selectBoxes_1.length; _i++) {
                 var selectBox = selectBoxes_1[_i];
                 if (selectBox instanceof HTMLSelectElement) {
-                    var selectBoxParents = _this.parentsManager.getParents(selectBox);
+                    var selectBoxParents = ParentsManager.getParents(selectBox);
                     selectBox.disabled = selectBoxParents.includes(input.id);
                 }
             }
             _this.requestManager.handleRequest(form, selectBoxes, {
                 trigger: input.id,
-                data: _this.parentsManager.getParentsData(form, parents),
+                data: ParentsManager.getParentsData(form, parents),
             });
         }; };
         this.isParentTextBased = function (parent) {
             return ['text', 'number', 'textarea'].includes(parent.type);
         };
-        this.parentsManager = parentsManager;
         this.requestManager = new DependentSelectBox_RequestManager(naja);
     }
     return DOMManager;
 }());
 /* harmony default export */ var DependentSelectBox_DOMManager = (DOMManager_DOMManager);
-
-// CONCATENATED MODULE: ./src/assets/DependentSelectBox/ParentsManager.ts
-
-var ParentsManager_ParentsManager = /** @class */ (function () {
-    function ParentsManager() {
-        var _this = this;
-        this.getParents = function (selectBox) {
-            var parentsData = selectBox.getAttribute(PARENTS_DATA);
-            if (parentsData) {
-                return JSON.parse(parentsData);
-            }
-            return [];
-        };
-        this.getParentsData = function (form, parents) {
-            var data = {};
-            for (var _i = 0, parents_1 = parents; _i < parents_1.length; _i++) {
-                var parent = parents_1[_i];
-                var element = form.elements.namedItem(parent);
-                if (element) {
-                    data[element.name] = _this.getParentValue(element);
-                }
-            }
-            return data;
-        };
-        this.getParentValue = function (element) {
-            if (element.type === 'checkbox')
-                return element.checked;
-            var value = element.value.trim();
-            if (value === '')
-                return null;
-            var number = Number(value);
-            if (!Number.isNaN(number))
-                return number;
-            return value;
-        };
-        this.parentHasListener = function (parent) {
-            return parent.getAttribute(PARENT_HAS_EVENT_LISTENER) !== null;
-        };
-        this.setParentHasListener = function (parent) {
-            return parent.setAttribute(PARENT_HAS_EVENT_LISTENER, 'true');
-        };
-    }
-    return ParentsManager;
-}());
-/* harmony default export */ var DependentSelectBox_ParentsManager = (ParentsManager_ParentsManager);
 
 // CONCATENATED MODULE: ./src/assets/DependentSelectBox/index.ts
 
@@ -290,19 +289,18 @@ var DependentSelectBox_DependentSelectBox = /** @class */ (function () {
             var selectBoxes = _this.domManager.findSelectBoxes();
             for (var _i = 0, selectBoxes_1 = selectBoxes; _i < selectBoxes_1.length; _i++) {
                 var selectBox = selectBoxes_1[_i];
-                var parents = _this.parentsManager.getParents(selectBox);
+                var parents = ParentsManager.getParents(selectBox);
                 parents.forEach(_this.initParent(parents, selectBoxes));
             }
         };
         this.initParent = function (parents, selectBoxes) { return function (id) {
             var parent = _this.domManager.findParent(id);
-            if (parent !== null && !_this.parentsManager.parentHasListener(parent)) {
+            if (parent !== null && !ParentsManager.parentHasListener(parent)) {
                 _this.domManager.addListeners(parent, parents, selectBoxes);
             }
         }; };
         this.naja = naja;
-        this.parentsManager = new DependentSelectBox_ParentsManager();
-        this.domManager = new DependentSelectBox_DOMManager(this.naja, this.parentsManager);
+        this.domManager = new DependentSelectBox_DOMManager(this.naja);
         this.naja.addEventListener('load', this.init);
     }
     return DependentSelectBox;

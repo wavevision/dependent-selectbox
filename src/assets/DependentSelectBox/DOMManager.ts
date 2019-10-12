@@ -4,12 +4,9 @@ import RequestManager from './RequestManager';
 import ParentsManager from './ParentsManager';
 
 class DOMManager {
-  public constructor(naja: Naja, parentsManager: ParentsManager) {
-    this.parentsManager = parentsManager;
+  public constructor(naja: Naja) {
     this.requestManager = new RequestManager(naja);
   }
-
-  private parentsManager: ParentsManager;
 
   private requestManager: RequestManager;
 
@@ -25,7 +22,7 @@ class DOMManager {
     events.forEach(e =>
       parent.addEventListener(e, this.handleChange(parents, selectBoxes)),
     );
-    this.parentsManager.setParentHasListener(parent);
+    ParentsManager.setParentHasListener(parent);
   };
 
   public findParent = (id: string): FormElement =>
@@ -44,13 +41,13 @@ class DOMManager {
     const form = input.form as HTMLFormElement;
     for (const selectBox of selectBoxes) {
       if (selectBox instanceof HTMLSelectElement) {
-        const selectBoxParents = this.parentsManager.getParents(selectBox);
+        const selectBoxParents = ParentsManager.getParents(selectBox);
         selectBox.disabled = selectBoxParents.includes(input.id);
       }
     }
     this.requestManager.handleRequest(form, selectBoxes, {
       trigger: input.id,
-      data: this.parentsManager.getParentsData(form, parents),
+      data: ParentsManager.getParentsData(form, parents),
     });
   };
 

@@ -7,6 +7,6 @@ use Nette\Forms\Container as NetteContainer;
 class Container extends NetteContainer
 {
 
-	use DependentFormContainer;
+	use DependentContainer;
 
 }

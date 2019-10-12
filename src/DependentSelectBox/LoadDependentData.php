@@ -30,13 +30,13 @@ class LoadDependentData
 	{
 		$options = [];
 		$request = Json::decode($json, Json::FORCE_ARRAY);
-		foreach ($this->getSelectBoxesToRender($dependentSelectBoxes, $request) as $dependentSelectBox) {
-			$values = $this->getAllValues($dependentSelectBox, $request[self::DATA]);
-			$dependentData = $dependentSelectBox->getDependentData(
+		foreach ($this->getSelectBoxesToRender($dependentSelectBoxes, $request) as $selectBox) {
+			$values = $this->getAllValues($selectBox, $request[self::DATA]);
+			$dependentData = $selectBox->getDependentData(
 				$values,
-				$this->getValue($dependentSelectBox, $request[self::DATA])
+				$this->getValue($selectBox, $request[self::DATA])
 			);
-			$options[$dependentSelectBox->getHtmlId()] = [
+			$options[$selectBox->getHtmlId()] = [
 				'disabled' => $dependentData->isDisabled(),
 				'options' => $dependentData->getOptions(),
 			];

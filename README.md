@@ -70,17 +70,16 @@ use Wavevision\DependentSelectBox\Form\Form;
 class FormComponent extends Control
 {
 
-    // add 'loadDependenData' signal handler and some utilities to your component
+    // add 'loadDependenData' signal and a few utilities
     use DependentComponent;
 
     public function __construct()
     {
         $this->monitor(Presenter::class, function (): void {
-            // setup your component (instatiate LoadDependentData, add signal link to form)
-            // you can pass your form's name as argument (default 'form')
+            // setup form in component - optionally pass form's (default 'form')
             $this->dependentComponentSetup();
             if ($this->hasReceivedDependentSignal()) {
-                // if our component received 'handleLoadDependentData', do something extra our app needs
+                // if 'loadDependenData' signal received, do anything extra we need
             }
         });
     }
@@ -104,7 +103,7 @@ class FormComponent extends Control
             ->setDisabledWhenEmpty()
             // if loaded values contain only one item, select it so the user does not have to
             ->setAutoSelectSingleValue()
-            // if $form['someOtherControl'] has 'someValue', treat $form['someControl'] as parent, otherwise ignore it
+            // if 'someOtherControl' has 'someValue', treat 'someControl' as parent, ignore it otherwise
             ->addConditionalParent($form['someControl'], $form['someOtherControl'], 'someValue');
         // add form handlers etc.
         // ...

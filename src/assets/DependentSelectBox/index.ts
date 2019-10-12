@@ -5,8 +5,7 @@ import { DependentSelectBoxes, Parents } from './types';
 class DependentSelectBox {
   public constructor(naja: Naja) {
     this.naja = naja;
-    this.parentsManager = new ParentsManager();
-    this.domManager = new DOMManager(this.naja, this.parentsManager);
+    this.domManager = new DOMManager(this.naja);
     this.naja.addEventListener('load', this.init);
   }
 
@@ -14,12 +13,10 @@ class DependentSelectBox {
 
   private readonly naja: Naja;
 
-  private readonly parentsManager: ParentsManager;
-
   public init = (): void => {
     const selectBoxes = this.domManager.findSelectBoxes();
     for (const selectBox of selectBoxes) {
-      const parents = this.parentsManager.getParents(selectBox);
+      const parents = ParentsManager.getParents(selectBox);
       parents.forEach(this.initParent(parents, selectBoxes));
     }
   };
@@ -29,7 +26,7 @@ class DependentSelectBox {
     selectBoxes: DependentSelectBoxes,
   ) => (id: string): void => {
     const parent = this.domManager.findParent(id);
-    if (parent !== null && !this.parentsManager.parentHasListener(parent)) {
+    if (parent !== null && !ParentsManager.parentHasListener(parent)) {
       this.domManager.addListeners(parent, parents, selectBoxes);
     }
   };

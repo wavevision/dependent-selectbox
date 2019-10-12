@@ -20,12 +20,23 @@ use Wavevision\Utils\Arrays;
 class DependentComponentTest extends TestCase
 {
 
+	/**
+	 * @var TestComponent|null
+	 */
+	private $component;
+
+	public function tearDown(): void
+	{
+		$this->component = null;
+	}
+
 	public function testDefault(): void
 	{
 		$this->assertInstanceOf(
 			TextResponse::class,
 			$this->runPresenter($this->getFormSubmit(), ['one' => '1'], null, false)
 		);
+		$this->assertFalse($this->component->hasReceivedDependentSignal());
 	}
 
 	public function testHandleLoadDependentData(): void
@@ -40,6 +51,7 @@ class DependentComponentTest extends TestCase
 				]
 			)
 		);
+		$this->assertTrue($this->component->hasReceivedDependentSignal());
 		$this->assertInstanceOf(JsonResponse::class, $response);
 		$this->assertIsArray($response->getPayload());
 	}
@@ -101,7 +113,7 @@ class DependentComponentTest extends TestCase
 			->setPostMock($post)
 			->setRawBodyMock($rawBody)
 			->setQueryMock($query);
-		return $presenter->run(
+		$response = $presenter->run(
 			new Request(
 				$presenterName,
 				IRequest::POST,
@@ -109,6 +121,7 @@ class DependentComponentTest extends TestCase
 				$post
 			)
 		);
+		$this->component = $presenter->getComponent(TestPresenter::COMPONENT, false);
+		return $response;
 	}
-
 }
