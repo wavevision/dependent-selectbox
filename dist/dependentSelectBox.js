@@ -167,7 +167,7 @@ var RequestManager_RequestManager = /** @class */ (function () {
                     case 0:
                         link = form.getAttribute(DATA_LINK);
                         if (!link) {
-                            throw new Error("Form " + form.id + " must have \"data-dependent-data-link\" attribute!");
+                            throw new Error("Form \"" + form.id + "\" must have \"data-dependent-data-link\" attribute!");
                         }
                         this.naja.fireEvent(EVENT_LOADING, { form: form, dependentSelectBoxes: dependentSelectBoxes });
                         return [4 /*yield*/, this.naja.makeRequest('POST', link, data, {
@@ -253,7 +253,7 @@ var DOMManager_DOMManager = /** @class */ (function () {
             return document.getElementById(id);
         };
         this.findSelectBoxes = function () {
-            return document.querySelectorAll(DEPENDENT_SELECT_BOX_SELECTOR);
+            return Array.from(document.querySelectorAll(DEPENDENT_SELECT_BOX_SELECTOR));
         };
         this.handleChange = function (parents, selectBoxes) { return function (event) {
             var input = event.target;
@@ -265,11 +265,12 @@ var DOMManager_DOMManager = /** @class */ (function () {
                     selectBox.disabled = selectBoxParents.includes(input.id);
                 }
             }
-            _this.requestManager.handleRequest(form, selectBoxes, {
+            _this.requestManager.handleRequest(form, _this.getFormSelectBoxes(form, selectBoxes), {
                 trigger: input.id,
                 data: ParentsManager.getParentsData(form, parents),
             });
         }; };
+        this.getFormSelectBoxes = function (form, selectBoxes) { return selectBoxes.filter(function (s) { return s.form === form; }); };
         this.isParentTextBased = function (parent) {
             return ['text', 'number', 'textarea'].includes(parent.type);
         };
@@ -308,7 +309,14 @@ var DependentSelectBox_DependentSelectBox = /** @class */ (function () {
 /* harmony default export */ var assets_DependentSelectBox = (DependentSelectBox_DependentSelectBox);
 
 // CONCATENATED MODULE: ./src/assets/index.ts
+/* concated harmony reexport DATA_LINK */__webpack_require__.d(__webpack_exports__, "DATA_LINK", function() { return DATA_LINK; });
+/* concated harmony reexport DEPENDENT_SELECT_BOX_SELECTOR */__webpack_require__.d(__webpack_exports__, "DEPENDENT_SELECT_BOX_SELECTOR", function() { return DEPENDENT_SELECT_BOX_SELECTOR; });
+/* concated harmony reexport EVENT_LOADED */__webpack_require__.d(__webpack_exports__, "EVENT_LOADED", function() { return EVENT_LOADED; });
+/* concated harmony reexport EVENT_LOADING */__webpack_require__.d(__webpack_exports__, "EVENT_LOADING", function() { return EVENT_LOADING; });
+/* concated harmony reexport PARENTS_DATA */__webpack_require__.d(__webpack_exports__, "PARENTS_DATA", function() { return PARENTS_DATA; });
+/* concated harmony reexport PARENT_HAS_EVENT_LISTENER */__webpack_require__.d(__webpack_exports__, "PARENT_HAS_EVENT_LISTENER", function() { return PARENT_HAS_EVENT_LISTENER; });
 /* concated harmony reexport default */__webpack_require__.d(__webpack_exports__, "default", function() { return assets_DependentSelectBox; });
+
 
 
 
