@@ -1,15 +1,15 @@
 import RequestManager from '../RequestManager';
-import { DATA_SELECT_BOX, EVENT_LOADED } from '../constants';
+import { EVENT_LOADED } from '../constants';
 
 import NajaMock from './NajaMock';
+import { createSelectBox } from './utils';
 
 describe('RequestManager', () => {
   const requestManager = new RequestManager(NajaMock);
   describe('handleResponse', () => {
     it('sets received values and fires Naja event', () => {
       const form = document.createElement('form');
-      const selectBox = document.createElement('select');
-      selectBox.setAttribute(DATA_SELECT_BOX, '');
+      const selectBox = createSelectBox();
       selectBox.id = 'select-box';
       form.appendChild(selectBox);
       document.body.appendChild(form);

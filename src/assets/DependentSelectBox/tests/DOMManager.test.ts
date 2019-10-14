@@ -1,30 +1,17 @@
 import DOMManager from '../DOMManager';
 import ParentsManager from '../ParentsManager';
-import { DATA_LINK, DATA_PARENTS, DATA_SELECT_BOX } from '../constants';
+import { DATA_LINK, EVENT_LOADING } from '../constants';
 
 import NajaMock from './NajaMock';
-
-const createParent = (): HTMLInputElement => {
-  const parent = document.createElement('input');
-  parent.id = 'parent';
-  return parent;
-};
-
-const createSelectBox = (): HTMLSelectElement => {
-  const selectBox = document.createElement('select');
-  selectBox.setAttribute(DATA_SELECT_BOX, '');
-  return selectBox;
-};
+import { createParent, createSelectBox } from './utils';
 
 describe('DOMManager', () => {
   const domManager = new DOMManager(NajaMock);
   describe('addListeners', () => {
     it('attaches change event listeners to parent', () => {
       const parent1 = createParent();
-      const parent2 = createParent();
+      const parent2 = createParent('checkbox');
       const selectBoxes = [createSelectBox()];
-      parent1.type = 'text';
-      parent2.type = 'checkbox';
       domManager.addListeners(parent1, [parent1.id, parent2.id], selectBoxes);
       domManager.addListeners(parent2, [parent1.id, parent2.id], selectBoxes);
       expect(ParentsManager.parentHasListener(parent1)).toBe(true);
@@ -50,14 +37,17 @@ describe('DOMManager', () => {
       const form = document.createElement('form');
       form.setAttribute(DATA_LINK, 'some-url');
       const parent = createParent();
-      const selectBox = createSelectBox();
-      selectBox.setAttribute(DATA_PARENTS, JSON.stringify([parent.id]));
+      const selectBox = createSelectBox([parent.id]);
       form.append(parent, selectBox);
       document.body.append(form);
       const event = new Event('change');
       parent.dispatchEvent(event);
       domManager.handleChange([parent.id], [selectBox])(event);
       expect(selectBox.disabled).toBe(true);
+      expect(NajaMock.fireEvent).toHaveBeenCalledWith(EVENT_LOADING, {
+        form,
+        dependentSelectBoxes: [selectBox],
+      });
       expect(NajaMock.makeRequest).toHaveBeenCalledTimes(1);
     });
   });
