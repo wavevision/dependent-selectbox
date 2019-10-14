@@ -62,6 +62,7 @@
     "fix": "run-s ts eslint:fix prettier:fix test",
     "prettier": "prettier --check '**/*.ts'",
     "prettier:fix": "yarn prettier --write",
+    "release": "npm version from-git",
     "test": "jest",
     "test:coverage": "jest --coverage || true",
     "test:coverage:report": "jest --coverage && cat temp/coverage/ts/lcov.info | coveralls --verbose",
