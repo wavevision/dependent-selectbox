@@ -8,5 +8,6 @@ class Container extends NetteContainer
 {
 
 	use DependentContainer;
+	use DependentControl;
 
 }

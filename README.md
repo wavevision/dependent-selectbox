@@ -41,13 +41,14 @@ npm install --save @wavevision/dependent-selectbox
 
 Create a form that will be an instance of `Wavevision\DependentSelectBox\Form\Form`.
 
-If you don't want to / cannot inherit from our base form, just make sure the form you create uses following traits
-critical for the dependent select box to work:
+If you don't want to / cannot inherit from our base form, just make sure the form you create uses
+`Wavevision\DependentSelectBox\Form\DependentForm` trait.
 
-- `Wavevision\DependentSelectBox\Form\DependentFormContainer`
-- `Wavevision\DependentSelectBox\Form\DependentFormControls`
+Your form should also use `Wavevision\DependentSelectBox\Form\DependentContainer` to have its containers extended with
+the dependent select box too, however, if you already have your own implementation of `Nette\Forms\Container`,
+just make sure the container uses `Wavevision\DependentSelectBox\Form\DependentControl` trait.
 
-After this, your form will be extended with `addDependentSelectBox` method. This method accepts following arguments:
+After this, your form and its containers will be extended with `addDependentSelectBox` method. This method accepts following arguments:
 
 | **Argument**  | **Type**                             | **Description**                                                                                |
 | ------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------- |
@@ -126,8 +127,6 @@ import DependentSelectBox from '@wavevision/dependent-selectbox';
 naja.registerExtension(DependentSelectBox);
 ```
 
-> The default version is minified, if you prefer unminified version, import `@wavevision/dependent-selectbox/dist/dependentSelectBox`.
-
 As mentioned in features, the extension emits two events you can attach listeners to. They are:
 
 - `dependentSelectBoxLoading` – fires, when loading of dependent data starts
@@ -147,15 +146,13 @@ If you don't use Naja elsewhere in your project an you don't want to set it up, 
 ⚠️ **WARNING:** This might collide with other Nette AJAX libraries, if used!
 
 ```typescript
-import '@wavevision/dependent-selectbox/dist/dependentSelectBox.all.min';
+import '@wavevision/dependent-selectbox/dist/dependentSelectBox.all';
 ```
-
-> If you prefer unminified version, just omit `.min`.
 
 #### 3. Use it directly in a `script` tag
 
 For old-school people only 😎.
 
 ```html
-<script src="/path/to/assets/dependentSelectBox.all.min.js"></script>
+<script src="/path/to/assets/dependentSelectBox.all.js"></script>
 ```

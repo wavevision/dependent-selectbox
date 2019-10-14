@@ -8,6 +8,6 @@ class Form extends NetteForm
 {
 
 	use DependentContainer;
-	use DependentControls;
+	use DependentForm;
 
 }

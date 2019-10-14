@@ -1,6 +1,6 @@
 import { Naja } from '../../types/naja';
 
-const NajaMock: Naja = {
+const NajaMock = {
   addEventListener: jest.fn(),
   defaultOptions: {
     selector: {
@@ -21,4 +21,4 @@ const NajaMock: Naja = {
   },
 };
 
-export default NajaMock;
+export default NajaMock as Naja;

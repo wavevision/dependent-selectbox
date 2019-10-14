@@ -17,9 +17,7 @@ const config: Configuration = {
   mode: 'production',
   entry: {
     [name]: index,
-    [`${name}.min`]: index,
     [`${name}.all`]: naja,
-    [`${name}.all.min`]: naja,
   },
   output: {
     filename: '[name].js',
@@ -36,7 +34,6 @@ const config: Configuration = {
     minimizer: [
       new TerserPlugin({
         extractComments: false,
-        include: /\.min\.js$/,
         sourceMap: true,
         terserOptions: {
           compress: {
