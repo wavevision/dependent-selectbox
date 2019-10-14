@@ -55,7 +55,7 @@
     "naja": "^1.6.0"
   },
   "scripts": {
-    "build": "run-s ts:declaration ts:webpack",
+    "build": "run-s ts:declaration ts:webpack prettier:fix",
     "eslint": "eslint '**/*.ts'",
     "eslint:fix": "yarn eslint --fix",
     "fix": "run-s ts eslint:fix prettier:fix test",
