@@ -13,11 +13,7 @@ jobs:
       cache:
         directories:
           - $HOME/.composer/cache
-      script:
-        - composer phing lint
-        - composer phing phpcs
-        - composer phing phpstan
-        - composer phing test:ci
+      script: composer phing ci
     - stage: TypeScript
       language: node_js
       node_js: 10.16.0
@@ -25,10 +21,7 @@ jobs:
         yarn: true
         directories:
           - node_modules
-      script:
-        - yarn eslint
-        - yarn prettier
-        - yarn test:ci
+      script: yarn ci
 
 notifications:
   webhooks:

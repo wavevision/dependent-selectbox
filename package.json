@@ -56,14 +56,15 @@
   },
   "scripts": {
     "build": "run-s ts:declaration ts:webpack prettier:fix",
+    "ci": "run-s eslint prettier test:coverage:report",
     "eslint": "eslint '**/*.ts'",
     "eslint:fix": "yarn eslint --fix",
     "fix": "run-s ts eslint:fix prettier:fix test",
     "prettier": "prettier --check '**/*.ts'",
     "prettier:fix": "yarn prettier --write",
     "test": "jest",
-    "test:ci": "jest --coverage && cat temp/coverage/ts/lcov.info | coveralls --verbose",
     "test:coverage": "jest --coverage || true",
+    "test:coverate:report": "jest --coverage && cat temp/coverage/ts/lcov.info | coveralls --verbose",
     "ts": "tsc --project tsconfig.json",
     "ts:declaration": "tsc --project webpack/tsconfig.dts.json",
     "ts:webpack": "cross-env TS_NODE_PROJECT=\"webpack/tsconfig.json\" webpack --config webpack/config.ts"
