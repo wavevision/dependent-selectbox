@@ -27,7 +27,7 @@ class RequestManager {
   ): void => {
     for (const id in response) {
       const element = document.getElementById(id) as FormElement;
-      if (element && element.getAttribute(DATA_SELECT_BOX)) {
+      if (element && element.getAttribute(DATA_SELECT_BOX) !== null) {
         element.disabled = response[id].disabled;
         element.innerHTML = response[id].options;
       }

@@ -40,6 +40,7 @@ const setParentHasListener = (parent: HTMLInputElement): void =>
 
 export default {
   getParents,
+  getParentValue,
   getParentsData,
   parentHasListener,
   setParentHasListener,

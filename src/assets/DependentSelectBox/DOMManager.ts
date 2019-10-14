@@ -40,10 +40,8 @@ class DOMManager {
     const input = event.target as HTMLInputElement;
     const form = input.form as HTMLFormElement;
     for (const selectBox of selectBoxes) {
-      if (selectBox instanceof HTMLSelectElement) {
-        const selectBoxParents = ParentsManager.getParents(selectBox);
-        selectBox.disabled = selectBoxParents.includes(input.id);
-      }
+      const selectBoxParents = ParentsManager.getParents(selectBox);
+      selectBox.disabled = selectBoxParents.includes(input.id);
     }
     this.requestManager.handleRequest(
       form,

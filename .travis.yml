@@ -28,7 +28,7 @@ jobs:
       script:
         - yarn eslint
         - yarn prettier
-        # - yarn test:ci
+        - yarn test:ci
 
 notifications:
   webhooks:
