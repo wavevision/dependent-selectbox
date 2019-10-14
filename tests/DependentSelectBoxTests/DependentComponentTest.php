@@ -46,7 +46,7 @@ class DependentComponentTest extends TestCase
 			[],
 			Json::encode(
 				[
-					LoadDependentData::DATA => ['one' => 1, 'container[conditionalAncestor]' => 1],
+					LoadDependentData::VALUES => ['one' => 1, 'container[conditionalAncestor]' => 1],
 					LoadDependentData::TRIGGER => $this->getFormParam('one'),
 				]
 			)

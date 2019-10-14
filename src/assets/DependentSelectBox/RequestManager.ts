@@ -38,7 +38,7 @@ class RequestManager {
   public handleRequest = async (
     form: HTMLFormElement,
     dependentSelectBoxes: DependentSelectBoxes,
-    data: { data: ParentsValues; trigger: string },
+    data: { trigger: string; values: ParentsValues },
   ): Promise<void> => {
     const link = form.getAttribute(DATA_LINK);
     if (!link) {
@@ -46,7 +46,11 @@ class RequestManager {
         `Form "${form.id}" must have "data-dependent-data-link" attribute!`,
       );
     }
-    this.naja.fireEvent(EVENT_LOADING, { form, dependentSelectBoxes });
+    this.naja.fireEvent(EVENT_LOADING, {
+      data,
+      form,
+      dependentSelectBoxes,
+    });
     const response = await this.naja.makeRequest<Response>('POST', link, data, {
       dataType: 'json',
       history: false,

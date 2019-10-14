@@ -48,7 +48,7 @@ class DOMManager {
       this.getFormSelectBoxes(form, selectBoxes),
       {
         trigger: input.id,
-        data: ParentsManager.getParentsData(form, parents),
+        values: ParentsManager.getParentsData(form, parents),
       },
     );
   };

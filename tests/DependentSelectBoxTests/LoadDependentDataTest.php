@@ -324,7 +324,7 @@ class LoadDependentDataTest extends TestCase
 		return Json::encode(
 			[
 				LoadDependentData::TRIGGER => $this->getFormName($trigger),
-				LoadDependentData::DATA => $data,
+				LoadDependentData::VALUES => $data,
 			]
 		);
 	}

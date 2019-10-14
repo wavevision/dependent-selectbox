@@ -37,6 +37,7 @@ describe('DOMManager', () => {
       const form = document.createElement('form');
       form.setAttribute(DATA_LINK, 'some-url');
       const parent = createParent();
+      parent.name = 'parent-name';
       const selectBox = createSelectBox([parent.id]);
       form.append(parent, selectBox);
       document.body.append(form);
@@ -45,6 +46,7 @@ describe('DOMManager', () => {
       domManager.handleChange([parent.id], [selectBox])(event);
       expect(selectBox.disabled).toBe(true);
       expect(NajaMock.fireEvent).toHaveBeenCalledWith(EVENT_LOADING, {
+        data: { trigger: 'parent', values: { 'parent-name': null } },
         form,
         dependentSelectBoxes: [selectBox],
       });

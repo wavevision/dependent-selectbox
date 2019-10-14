@@ -17,7 +17,7 @@ class LoadDependentData
 
 	public const TRIGGER = 'trigger';
 
-	public const DATA = 'data';
+	public const VALUES = 'values';
 
 	/**
 	 * @param DependentSelectBox[] $dependentSelectBoxes
@@ -31,10 +31,10 @@ class LoadDependentData
 		$options = [];
 		$request = Json::decode($json, Json::FORCE_ARRAY);
 		foreach ($this->getSelectBoxesToRender($dependentSelectBoxes, $request) as $selectBox) {
-			$values = $this->getAllValues($selectBox, $request[self::DATA]);
+			$values = $this->getAllValues($selectBox, $request[self::VALUES]);
 			$dependentData = $selectBox->getDependentData(
 				$values,
-				$this->getValue($selectBox, $request[self::DATA])
+				$this->getValue($selectBox, $request[self::VALUES])
 			);
 			$options[$selectBox->getHtmlId()] = [
 				'disabled' => $dependentData->isDisabled(),
@@ -166,4 +166,5 @@ class LoadDependentData
 			unset($temp);
 		}
 	}
+
 }

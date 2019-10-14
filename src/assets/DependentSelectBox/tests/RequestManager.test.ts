@@ -35,7 +35,7 @@ describe('RequestManager', () => {
         requestManager.handleRequest(
           document.createElement('form'),
           [document.createElement('select')],
-          { data: {}, trigger: '' },
+          { trigger: '', values: {} },
         ),
       ).rejects.toThrow(
         'Form "" must have "data-dependent-data-link" attribute!',
