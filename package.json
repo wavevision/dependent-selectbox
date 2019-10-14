@@ -63,7 +63,7 @@
     "prettier": "prettier --check '**/*.ts'",
     "prettier:fix": "yarn prettier --write",
     "release": "run-s release:version release:commit release:version",
-    "release:commit": "git commit -m 'Release' && git push",
+    "release:commit": "git commit -a -m 'Release' && git push",
     "release:publish": "npm publish --access public",
     "release:version": "npm version from-git",
     "test": "jest",
