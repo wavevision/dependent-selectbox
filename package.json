@@ -64,7 +64,7 @@
     "prettier:fix": "yarn prettier --write",
     "test": "jest",
     "test:coverage": "jest --coverage || true",
-    "test:coverate:report": "jest --coverage && cat temp/coverage/ts/lcov.info | coveralls --verbose",
+    "test:coverage:report": "jest --coverage && cat temp/coverage/ts/lcov.info | coveralls --verbose",
     "ts": "tsc --project tsconfig.json",
     "ts:declaration": "tsc --project webpack/tsconfig.dts.json",
     "ts:webpack": "cross-env TS_NODE_PROJECT=\"webpack/tsconfig.json\" webpack --config webpack/config.ts"
