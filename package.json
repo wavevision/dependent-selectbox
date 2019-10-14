@@ -62,7 +62,6 @@
     "fix": "run-s ts eslint:fix prettier:fix test",
     "prettier": "prettier --check '**/*.ts'",
     "prettier:fix": "yarn prettier --write",
-    "release": "run-s release:version release:version",
     "release:publish": "npm publish --access public",
     "release:version": "npm version from-git",
     "test": "jest",
