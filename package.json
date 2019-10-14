@@ -63,7 +63,7 @@
     "postversion": "git push --tags && yarn publish --access public --new-version $npm_package_version && git push && echo \"Successfully released version $npm_package_version!\"",
     "prettier": "prettier --check '**/*.ts'",
     "prettier:fix": "yarn prettier --write",
-    "preversion": "yarn fix",
+    "preversion": "composer phing fix && yarn fix",
     "test": "jest",
     "test:coverage": "jest --coverage || true",
     "test:coverage:report": "jest --coverage && cat temp/coverage/ts/lcov.info | coveralls --verbose",
