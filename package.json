@@ -55,6 +55,8 @@
     "naja": "^1.6.0"
   },
   "scripts": {
+    "preversion": "yarn fix",
+    "postversion": "git push",
     "build": "run-s ts:declaration ts:webpack prettier:fix",
     "ci": "run-s eslint prettier test:coverage:report",
     "eslint": "eslint '**/*.ts'",
@@ -62,10 +64,6 @@
     "fix": "run-s ts eslint:fix prettier:fix test",
     "prettier": "prettier --check '**/*.ts'",
     "prettier:fix": "yarn prettier --write",
-    "release": "run-s release:version release:push release:publish",
-    "release:push": "git push",
-    "release:publish": "npm publish --access public",
-    "release:version": "npm version from-git",
     "test": "jest",
     "test:coverage": "jest --coverage || true",
     "test:coverage:report": "jest --coverage && cat temp/coverage/ts/lcov.info | coveralls --verbose",
