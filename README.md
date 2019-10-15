@@ -138,7 +138,7 @@ Listeners for both events will receive an object with these properties:
 | `form`                 | `HTMLFormElement`     | the form in which the event has been triggered     |
 | `dependentSelectBoxes` | `HTMLSelectElement[]` | an array of all dependent select boxes in the form |
 
-The former event also contains `data` property, which is an object containing:
+The first event also contains `data` property, which is an object containing:
 
 | Property  | Type                                                                         | Description                                                                                                                                           |
 | --------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
