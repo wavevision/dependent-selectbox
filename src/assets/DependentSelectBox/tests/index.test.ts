@@ -1,4 +1,4 @@
-import DependentSelectBox from '../index';
+import DependentSelectBox from '../..';
 
 import NajaMock from './NajaMock';
 import { createParent, createSelectBox } from './utils';

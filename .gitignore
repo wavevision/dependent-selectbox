@@ -6,5 +6,5 @@ node_modules
 temp
 vendor
 /src/assets/**/*.d.ts
-!/src/assets/**/types.d.ts
-!/src/assets/**/types/*.d.ts
+!/src/assets/**/types.ts
+!/src/assets/**/types/*.ts

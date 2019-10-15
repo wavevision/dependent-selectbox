@@ -26,6 +26,7 @@ describe('RequestManager', () => {
       expect(NajaMock.fireEvent).toHaveBeenCalledWith(EVENT_LOADED, {
         form,
         dependentSelectBoxes: [selectBox],
+        response,
       });
     });
   });
