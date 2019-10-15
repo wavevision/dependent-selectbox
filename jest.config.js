@@ -13,7 +13,7 @@ module.exports = {
   collectCoverageFrom: [
     'src/assets/**/*.ts',
     '!src/assets/**/*.d.ts',
-    '!src/assets/naja.ts',
+    '!src/assets/all.ts',
     '!src/assets/**/tests/**',
     '!**/node_modules/**',
   ],
