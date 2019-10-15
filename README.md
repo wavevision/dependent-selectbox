@@ -121,6 +121,7 @@ import naja from 'naja';
 import DependentSelectBox from '@wavevision/dependent-selectbox';
 
 naja.registerExtension(DependentSelectBox);
+// add other extensions, initialize etc.
 ```
 
 As mentioned in features, the extension emits events you can attach listeners to.
