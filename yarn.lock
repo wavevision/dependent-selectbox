@@ -1088,6 +1088,11 @@
   resolved "https://registry.yarnpkg.com/@types/mkdirp/-/mkdirp-0.3.29.tgz#7f2ad7ec55f914482fc9b1ec4bb1ae6028d46066"
   integrity sha1-fyrX7FX5FEgvybHsS7GuYCjUYGY=
 
+"@types/naja@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@types/naja/-/naja-1.6.0.tgz#fe4c5f0f2d54f20aa3f1e6e9c9a09760f5ea52a2"
+  integrity sha512-gsV2r5wNbOB4dR4nLcOeHL91AXtJSo7W2OfM585N7tZxIsjlbJEnSMTtFC2RKkXsOtiXeEHSCHjTZipAGzGC5g==
+
 "@types/node@*":
   version "12.7.12"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.12.tgz#7c6c571cc2f3f3ac4a59a5f2bd48f5bdbc8653cc"

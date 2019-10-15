@@ -1,4 +1,4 @@
-import { Naja } from '../types/naja';
+import { Naja } from 'naja';
 
 import ParentsManager from './ParentsManager';
 import RequestManager from './RequestManager';

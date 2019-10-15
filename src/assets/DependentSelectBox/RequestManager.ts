@@ -1,4 +1,4 @@
-import { Naja } from '../types/naja';
+import { Naja } from 'naja';
 
 import {
   Request,
@@ -51,7 +51,7 @@ class RequestManager {
     }
     const e: Partial<LoadingEvent> = { data, form, dependentSelectBoxes };
     this.naja.fireEvent(EVENT_LOADING, e);
-    const response = await this.naja.makeRequest<Response>('POST', link, data, {
+    const response: Response = await this.naja.makeRequest('POST', link, data, {
       dataType: 'json',
       history: false,
       responseType: 'json',

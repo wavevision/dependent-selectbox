@@ -29,6 +29,7 @@
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@types/jest": "^24.0.18",
+    "@types/naja": "^1.6.0",
     "@types/terser-webpack-plugin": "^1.2.1",
     "@types/webpack": "^4.39.3",
     "@typescript-eslint/eslint-plugin": "^2.3.3",
