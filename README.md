@@ -88,8 +88,6 @@ class FormComponent extends Control
     protected function createComponentForm(): Form
     {
         // create your form as you are used to
-        // ...
-        //
         $form->addDependentSelectBox('name', 'Label', $form['someParentControl'])
             ->setDependentCallback(function (DependentValues $values): DependentData {
                 // get ArrayHash values, if you perfer array, use getRawValues
@@ -107,8 +105,6 @@ class FormComponent extends Control
             // if 'someOtherControl' has 'someValue', treat 'someControl' as parent
             ->addConditionalParent($form['someControl'], $form['someOtherControl'], 'someValue');
         // add form handlers etc.
-        // ...
-        //
         return $form;
     }
 }
@@ -127,27 +123,34 @@ import DependentSelectBox from '@wavevision/dependent-selectbox';
 naja.registerExtension(DependentSelectBox);
 ```
 
-As mentioned in features, the extension emits two events you can attach listeners to. They are:
+As mentioned in features, the extension emits events you can attach listeners to.
 
-- `dependentSelectBoxLoading` – fires right after a parent changes and a request to server is being dispatched
-- `dependentSelectBoxLoaded` – fires when the data loading is finished
+| Event                       | Description                                                                    |
+| --------------------------- | ------------------------------------------------------------------------------ |
+| `dependentSelectBoxLoading` | fires right after a parent changes and a request to server is being dispatched |
+| `dependentSelectBoxLoaded`  | fires when the data loading is finished                                        |
 
 Listeners for both events will receive an object with these properties:
 
-- `form: HTMLFormElement` – the form in which the event has been triggered
-- `dependentSelectBoxes: HTMLSelectElement[]` – an array of all dependent select boxes in the form
+| Property               | Type                  | Description                                        |
+| ---------------------- | --------------------- | -------------------------------------------------- |
+| `form`                 | `HTMLFormElement`     | the form in which the event has been triggered     |
+| `dependentSelectBoxes` | `HTMLSelectElement[]` | an array of all dependent select boxes in the form |
 
 The former event also contains `data` property, which is an object containing:
 
-- `trigger: string` – HTML `id` of a parent that triggered the event
-- `values: Record<string, boolean | number | string | null>` – object with values of all parents of the select box(es)
-  whose parent triggered the event (HTML `name` properties of parent elements are used as keys)
+| Property  | Type                                                                         | Description                                                                                                                                           |
+| --------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `trigger` | `string`                                                                     | HTML `id` of a parent that triggered the event                                                                                                        |
+| `values`  | <code>Record<string, boolean &#124; number &#124; string &#124; null></code> | object with values of all parents of the select box(es) whose parent triggered the event (HTML `name` properties of parent elements are used as keys) |
 
 The latter one contains `response` object of objects, in which keys are HTML `id` attributes of updated select boxes
 and values are:
 
-- `disabled: boolean` – select box state
-- `items: string` – inner HTML of the select box
+| Property   | Type      | Description                  |
+| ---------- | --------- | ---------------------------- |
+| `disabled` | `boolean` | select box state             |
+| `items`    | `string`  | inner HTML of the select box |
 
 Please, refer to [Naja docs](https://naja.js.org) to find out more about its extensions.
 
