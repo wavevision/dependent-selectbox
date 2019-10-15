@@ -10,14 +10,14 @@ import { optimize, Configuration } from 'webpack';
 import pkg from '../package.json';
 
 import makeLoaders from './loaders';
-import { assets, index, naja, name, output } from './constants';
+import { assets, index, all, name, output } from './constants';
 
 const config: Configuration = {
   devtool: 'source-map',
   mode: 'production',
   entry: {
     [name]: index,
-    [`${name}.all`]: naja,
+    [`${name}.all`]: all,
   },
   output: {
     filename: '[name].js',
