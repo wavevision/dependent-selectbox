@@ -1,6 +1,6 @@
 {
   "name": "@wavevision/dependent-selectbox",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Dependent selectbox component for Nette forms.",
   "main": "dist/dependentSelectBox.js",
   "types": "dist",
