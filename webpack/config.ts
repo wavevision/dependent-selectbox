@@ -1,16 +1,9 @@
-import path from 'path';
-
-// eslint-disable-next-line
-// @ts-ignore
-import DtsPlugin from 'dts-bundle-webpack';
 import TerserPlugin from 'terser-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import { optimize, Configuration } from 'webpack';
 
-import pkg from '../package.json';
-
 import makeLoaders from './loaders';
-import { assets, index, all, name, output } from './constants';
+import { index, all, library, name, output } from './constants';
 
 const config: Configuration = {
   devtool: 'source-map',
@@ -21,7 +14,7 @@ const config: Configuration = {
   },
   output: {
     filename: '[name].js',
-    library: name.charAt(0).toUpperCase() + name.slice(1),
+    library,
     libraryExport: 'default',
     libraryTarget: 'umd',
     path: output,
@@ -51,12 +44,6 @@ const config: Configuration = {
   plugins: [
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['**/*', '!*.d.ts'],
-    }),
-    new DtsPlugin({
-      main: path.join(assets, 'index.d.ts'),
-      name: pkg.name,
-      out: path.join(output, 'index.d.ts'),
-      outputAsModuleFolder: true,
     }),
     new optimize.OccurrenceOrderPlugin(true),
   ],

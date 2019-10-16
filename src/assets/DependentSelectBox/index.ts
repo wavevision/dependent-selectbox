@@ -15,7 +15,7 @@ class DependentSelectBox {
 
   private readonly naja: Naja;
 
-  public init = (): void => {
+  public readonly init = (): void => {
     const selectBoxes = this.domManager.findSelectBoxes();
     for (const selectBox of selectBoxes) {
       const parents = ParentsManager.getParents(selectBox);
@@ -23,7 +23,7 @@ class DependentSelectBox {
     }
   };
 
-  private initParent = (
+  private readonly initParent = (
     parents: Parents,
     selectBoxes: DependentSelectBoxes,
   ) => (id: string): void => {

@@ -4,7 +4,7 @@
     "allowJs": false,
     "declaration": true,
     "emitDeclarationOnly": true,
-    "noEmit": false
-  },
-  "files": ["../src/assets/index.ts", "../src/assets/all.ts"]
+    "noEmit": false,
+    "skipLibCheck": false
+  }
 }

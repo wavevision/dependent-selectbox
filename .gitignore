@@ -8,3 +8,5 @@ vendor
 /src/assets/**/*.d.ts
 !/src/assets/**/types.ts
 !/src/assets/**/types/*.ts
+/webpack/constants.js
+/webpack/dts.config.js
