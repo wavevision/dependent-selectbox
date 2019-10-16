@@ -35,6 +35,8 @@ or [npm](https://npmjs.com)
 npm install --save @wavevision/dependent-selectbox
 ```
 
+> You might also want to add `@types/naja` as your `devDependency` if your project uses TypeScript.
+
 ## Usage
 
 ### Server side
