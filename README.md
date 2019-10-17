@@ -61,7 +61,7 @@ After this, your form and its containers will be extended with `addDependentSele
 
 The method returns an instance of [`Wavevision\DependentSelectBox\DependentSelectBox`](./src/DependentSelectBox/DependentSelectBox.php).
 
-Example implementation of dependent select box in a form wrapped in a `Control` component:
+#### The recommended way of using the form is in a `Control` component.
 
 ```php
 use Nette\Application\UI\Control;
@@ -112,6 +112,9 @@ class FormComponent extends Control
     }
 }
 ```
+
+> **NOTE**: You can use the form in a `Presenter` too, the only limitation is that you can only have one dependent form per page like this.
+> If you wrap your form in a component (each using `DependentComponent` trait), you can then use as many forms on one page as you wish.
 
 ### Client side
 
