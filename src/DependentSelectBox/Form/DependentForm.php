@@ -22,11 +22,16 @@ trait DependentForm
 	{
 		/** @var BaseControl $control */
 		foreach ($this->getControls() as $control) {
-			$id = $control->getHtmlId();
-			if ($control instanceof DependentSelectBox && !isset($this->dependentSelectBoxes[$id])) {
-				$this->dependentSelectBoxes[$id] = $control;
+			if ($this->isDependentSelectBox($control)) {
+				$this->dependentSelectBoxes[$control->getHtmlId()] = $control;
 			}
 		}
 		return $this->dependentSelectBoxes;
 	}
+
+	private function isDependentSelectBox(BaseControl $control): bool
+	{
+		return $control instanceof DependentSelectBox && !isset($this->dependentSelectBoxes[$control->getHtmlId()]);
+	}
+
 }
