@@ -20,7 +20,7 @@ trait DependentForm
 	 */
 	public function getDependentSelectBoxes(): array
 	{
-		/** @var BaseControl $control */
+		/** @var DependentSelectBox $control */
 		foreach ($this->getControls() as $control) {
 			if ($this->isDependentSelectBox($control)) {
 				$this->dependentSelectBoxes[$control->getHtmlId()] = $control;
