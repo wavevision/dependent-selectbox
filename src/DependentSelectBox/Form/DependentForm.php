@@ -2,7 +2,6 @@
 
 namespace Wavevision\DependentSelectBox\Form;
 
-use Iterator;
 use Nette\Forms\Controls\BaseControl;
 use Wavevision\DependentSelectBox\DependentSelectBox;
 
@@ -16,27 +15,23 @@ trait DependentForm
 	 */
 	private $dependentSelectBoxes = [];
 
-	public function getControls(): Iterator
-	{
-		$controls = parent::getControls();
-		foreach ($controls as $control) {
-			$this->addDependentSelectBoxControl($control);
-		}
-		return $controls;
-	}
-
 	/**
 	 * @return DependentSelectBox[]
 	 */
 	public function getDependentSelectBoxes(): array
 	{
+		/** @var DependentSelectBox $control */
+		foreach ($this->getControls() as $control) {
+			if ($this->isDependentSelectBox($control)) {
+				$this->dependentSelectBoxes[$control->getHtmlId()] = $control;
+			}
+		}
 		return $this->dependentSelectBoxes;
 	}
 
-	private function addDependentSelectBoxControl(BaseControl $control): void
+	private function isDependentSelectBox(BaseControl $control): bool
 	{
-		if ($control instanceof DependentSelectBox) {
-			$this->dependentSelectBoxes[] = $control;
-		}
+		return $control instanceof DependentSelectBox && !isset($this->dependentSelectBoxes[$control->getHtmlId()]);
 	}
+
 }

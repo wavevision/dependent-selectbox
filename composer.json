@@ -43,6 +43,14 @@
     "wavevision/coding-standard": "^1.1"
   },
   "scripts": {
+    "rm-cache": "rm -rf temp/cache",
     "phing": "phing"
+  },
+  "extra": {
+    "phpstan": {
+      "includes": [
+        "phpstan.neon"
+      ]
+    }
   }
 }

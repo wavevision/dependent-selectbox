@@ -17,7 +17,10 @@
     <target name="init" description="Initialize project" depends="composer"/>
 
     <target name="rm-cache" description="Clear cache">
-        <exec executable="rm -rf temp/cache"/>
+        <exec executable="rm" logoutput="true" passthru="true" checkreturn="true">
+            <arg value="-rf"/>
+            <arg value="${temp}/cache"/>
+        </exec>
     </target>
 
     <target name="composer" description="Download PHP dependencies">
