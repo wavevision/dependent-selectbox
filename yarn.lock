@@ -1071,9 +1071,9 @@
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
 "@types/naja@^1.6.0":
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/@types/naja/-/naja-1.6.1.tgz#2458990e02922904746df9d5e78c348fa9cba8b5"
-  integrity sha512-ICExpTTobIWbUasZNYr7LMHHLt9ZX8UpPtpxDndXVGSMXcSbgq0v/v6fU2DYZMk4xyOwV0sbiob01juCfHUgwQ==
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@types/naja/-/naja-1.6.2.tgz#547d7465e511ef83260a6700c82add8d31743d33"
+  integrity sha512-JGe1IwMAOr44xUlMTZmPPxQS3l5NOVKyYix3scP1MPWacr9HiH9KbKPL2enF3x3v5V0SHa3UAhTBi1dKMWQErw==
 
 "@types/node@*":
   version "12.7.12"
