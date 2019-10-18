@@ -41,12 +41,7 @@ const config: Configuration = {
     ],
     nodeEnv: 'production',
   },
-  plugins: [
-    new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['**/*', '!*.d.ts'],
-    }),
-    new optimize.OccurrenceOrderPlugin(true),
-  ],
+  plugins: [new CleanWebpackPlugin(), new optimize.OccurrenceOrderPlugin(true)],
   stats: 'minimal',
   resolve: { extensions: ['.js', '.ts'] },
 };

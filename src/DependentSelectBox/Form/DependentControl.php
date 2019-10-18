@@ -8,8 +8,15 @@ use Wavevision\DependentSelectBox\DependentSelectBox;
 trait DependentControl
 {
 
-	public function addDependentSelectBox(string $name, string $label, BaseControl ...$parents): DependentSelectBox
+	/**
+	 * @param string $name
+	 * @param string|object $label
+	 * @param BaseControl ...$parents
+	 * @return DependentSelectBox
+	 */
+	public function addDependentSelectBox(string $name, $label, BaseControl ...$parents): DependentSelectBox
 	{
 		return $this[$name] = new DependentSelectBox($label, $parents);
 	}
+
 }

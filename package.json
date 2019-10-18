@@ -57,7 +57,7 @@
     "naja": "^1.6.0"
   },
   "scripts": {
-    "build": "run-s ts:declaration ts:webpack prettier:fix",
+    "build": "run-s ts:webpack ts:dts prettier:fix",
     "ci": "run-s eslint prettier test:coverage:report",
     "eslint": "eslint '**/*.ts'",
     "eslint:fix": "yarn eslint --fix",
@@ -75,9 +75,9 @@
     "test:coverage": "jest --coverage || true",
     "test:coverage:report": "jest --coverage && cat temp/coverage/ts/lcov.info | coveralls --verbose",
     "ts": "tsc --project tsconfig.json",
-    "ts:declaration": "run-s ts:declaration:config ts:declaration:generate",
-    "ts:declaration:config": "tsc --project webpack/dts.config.generate.json",
-    "ts:declaration:generate": "dts-bundle-generator --config webpack/dts.config.js",
+    "ts:dts": "run-s ts:dts:config ts:dts:generate",
+    "ts:dts:config": "tsc --project webpack/tsconfig.dts.config.json",
+    "ts:dts:generate": "dts-bundle-generator --config webpack/dts.config.js",
     "ts:webpack": "cross-env TS_NODE_PROJECT=\"webpack/tsconfig.json\" webpack --config webpack/config.ts"
   }
 }

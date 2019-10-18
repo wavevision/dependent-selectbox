@@ -6,7 +6,7 @@ import { assets, library, output } from './constants';
 
 const config: BundlerConfig = {
   compilationOptions: {
-    preferredConfigPath: './dts.config.json',
+    preferredConfigPath: './tsconfig.dts.generate.json',
   },
   entries: [
     {

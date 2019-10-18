@@ -38,10 +38,10 @@ class DependentSelectBox extends SelectBox
 	private $parents;
 
 	/**
-	 * @param string $label
+	 * @param string|object $label
 	 * @param BaseControl[] $parents
 	 */
-	public function __construct(string $label, array $parents)
+	public function __construct($label, array $parents)
 	{
 		parent::__construct($label);
 		$this->parents = $parents;
