@@ -47,10 +47,6 @@
     "phing": "phing"
   },
   "extra": {
-    "phpstan": {
-      "includes": [
-        "phpstan.neon"
-      ]
-    }
+    "phpstan": {}
   }
 }
