@@ -1,0 +1,10 @@
+/src/DependentSelectBox
+/tests
+/.coveralls.yml
+/.travis.yml
+/build.xml
+/codesniffer-ruleset.xml
+/composer.json
+/composer.lock
+/phpstan.neon
+/phpunit.xml

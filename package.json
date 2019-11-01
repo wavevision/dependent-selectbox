@@ -24,9 +24,6 @@
     "url": "https://github.com/wavevision/dependent-selectbox/issues"
   },
   "homepage": "https://github.com/wavevision/dependent-selectbox",
-  "engines": {
-    "node": "10.16.0"
-  },
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@types/jest": "^24.0.18",
