@@ -16,7 +16,6 @@ jobs:
       script: composer phing ci
     - stage: TypeScript
       language: node_js
-      node_js: 10.16.0
       cache:
         yarn: true
         directories:
