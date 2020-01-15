@@ -27,23 +27,28 @@
       "Wavevision\\": "tests"
     }
   },
+  "config": {
+    "platform": {
+      "php": "7.4"
+    },
+    "sort-packages": true
+  },
   "require": {
-    "php": ">=7.2",
     "nette/forms": "^3.0",
-    "wavevision/utils": "^1.0"
+    "php": ">=7.4",
+    "wavevision/utils": "^2.1"
   },
   "require-dev": {
     "jakub-onderka/php-parallel-lint": "^1.0",
-    "nette/application": "^3.0",
-    "phpstan/phpstan": "^0.11.16",
-    "phpunit/phpunit": "^8.4",
     "latte/latte": "^2.5",
+    "nette/application": "^3.0",
     "phing/phing": "^2.16",
     "php-coveralls/php-coveralls": "^2.1",
+    "phpstan/phpstan": "^0.11.16",
+    "phpunit/phpunit": "^8.4",
     "wavevision/coding-standard": "^1.1"
   },
   "scripts": {
-    "rm-cache": "rm -rf temp/cache",
     "phing": "phing"
   },
   "extra": {
