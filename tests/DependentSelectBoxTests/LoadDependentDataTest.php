@@ -58,7 +58,7 @@ class LoadDependentDataTest extends TestCase
 				function (DependentValues $values) use ($payloadValues) {
 					$this->assertEquals($payloadValues, $values->getRawValues());
 					$this->assertEquals($payloadValues, $values->getContainerRawValues());
-					return (new DependentData())->setItems([1 => 'one', 2 => 'two']);
+					return (new DependentData())->setItems([1 => 'one', 2 => 'two'])->setValue(1);
 				}
 			);
 		$this->assertHasValues(
@@ -74,6 +74,7 @@ class LoadDependentDataTest extends TestCase
 						[
 							'value' => 1,
 							'text' => 'one',
+							'selected' => true,
 						],
 						[
 							'value' => 2,
@@ -366,4 +367,5 @@ class LoadDependentDataTest extends TestCase
 	{
 		return implode('', $options);
 	}
+
 }

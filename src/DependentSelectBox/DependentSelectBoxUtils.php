@@ -4,6 +4,8 @@ namespace Wavevision\DependentSelectBox;
 
 use Nette\Application\UI\Form;
 use Nette\Forms\Controls\BaseControl;
+use Nette\Forms\Controls\CheckboxList;
+use Nette\Forms\Controls\RadioList;
 use Nette\Utils\Json;
 use Wavevision\Utils\Arrays;
 
@@ -15,15 +17,29 @@ use Wavevision\Utils\Arrays;
 trait DependentSelectBoxUtils
 {
 
+	/**
+	 * @param mixed[] $parents
+	 */
+	private function addParentId(BaseControl $parent, array &$parents): void
+	{
+		if ($parent instanceof CheckboxList || $parent instanceof RadioList) {
+			foreach (array_keys($parent->items) as $key) {
+				$parents[] = $parent->getControlPart($key)->id;
+			}
+		} else {
+			$parents[] = $parent->getHtmlId();
+		}
+	}
+
 	private function createParentsAttribute(): string
 	{
 		$parents = [];
 		foreach ($this->parents as $parent) {
-			$parents[] = $parent->getHtmlId();
+			$this->addParentId($parent, $parents);
 		}
 		foreach ($this->conditionalParents as $parent) {
 			if (!in_array($parent->getAncestor()->getHtmlId(), $parents)) {
-				$parents[] = $parent->getAncestor()->getHtmlId();
+				$this->addParentId($parent->getAncestor(), $parents);
 			}
 		}
 		return Json::encode(array_merge($parents, array_keys($this->conditionalParents)));
@@ -106,4 +122,5 @@ trait DependentSelectBoxUtils
 			$this->setValue($value);
 		}
 	}
+
 }

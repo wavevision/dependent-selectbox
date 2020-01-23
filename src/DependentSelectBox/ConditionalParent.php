@@ -54,4 +54,5 @@ class ConditionalParent
 	{
 		return $this->parent;
 	}
+
 }

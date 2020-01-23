@@ -94,4 +94,5 @@ class Request extends NetteRequest
 		$this->queryMock = $queryMock;
 		return $this;
 	}
+
 }

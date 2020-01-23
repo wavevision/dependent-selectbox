@@ -43,7 +43,7 @@ trait DependentComponent
 				$body
 			)
 		);
-	}
+	} // @codeCoverageIgnore
 
 	public function hasReceivedDependentSignal(): bool
 	{
@@ -76,4 +76,5 @@ trait DependentComponent
 			}
 		};
 	}
+
 }

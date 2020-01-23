@@ -20,4 +20,5 @@ trait DependentContainer
 		}
 		return $this[$name] = $control;
 	}
+
 }

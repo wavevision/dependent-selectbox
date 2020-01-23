@@ -13,4 +13,5 @@ class TestPresenter extends Presenter
 	{
 		$this->addComponent(new TestComponent(), self::COMPONENT);
 	}
+
 }

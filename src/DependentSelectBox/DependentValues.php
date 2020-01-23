@@ -79,4 +79,5 @@ class DependentValues
 	{
 		return ArrayHash::from($values);
 	}
+
 }

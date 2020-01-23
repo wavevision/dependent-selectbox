@@ -37,13 +37,18 @@ class TestComponent extends Control
 		$container = $form->addContainer('container');
 		$container->addSelect('conditionalAncestor', 'Conditional ancestor', ['haha', 'hehe']);
 		$container->addText('conditional', 'Conditional');
-		$form->addDependentSelectBox('two', 'Two', $form['one'])
+		$form->addRadioList('radio', 'Hello', ['la', 'lala']);
+		$dependentSelectbox = $form->addDependentSelectBox('two', 'Two', $form['one'], $form['radio'])
 			->setDependentCallback(
 				function (): DependentData {
 					return new DependentData();
 				}
 			)
-			->addConditionalParent($container['conditional'], $container['conditionalAncestor'], 1);
+			->addConditionalParent($container['conditional'], $container['conditionalAncestor'], 1)
+			->setDisabledWhenEmpty();
+		$dependentSelectbox->getValue();
+		$dependentSelectbox->isDisabled();
 		return $form;
 	}
+
 }

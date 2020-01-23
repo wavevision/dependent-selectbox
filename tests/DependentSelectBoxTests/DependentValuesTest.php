@@ -18,4 +18,5 @@ class DependentValuesTest extends TestCase
 		$this->assertEquals(ArrayHash::from($values), $dependentValues->getValues());
 		$this->assertEquals(ArrayHash::from($containerValues), $dependentValues->getContainerValues());
 	}
+
 }
