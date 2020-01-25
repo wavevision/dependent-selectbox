@@ -1,7 +1,7 @@
 # Wavevision Dependent SelectBox
 
 [![Build Status](https://travis-ci.org/wavevision/dependent-selectbox.svg?branch=master)](https://travis-ci.org/wavevision/dependent-selectbox)
-[![Coverage Status](https://coveralls.io/repos/github/wavevision/dependent-selectbox/badge.svg?branch=master)](https://coveralls.io/github/wavevision/dependent-selectbox?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/wavevision/dependent-selectbox/badge.svg?branch=master&service=github)](https://coveralls.io/github/wavevision/dependent-selectbox?branch=master)
 [![PHPStan](https://img.shields.io/badge/style-level%20max-brightgreen.svg?label=phpstan)](https://github.com/phpstan/phpstan)
 [![Nette Forms](https://img.shields.io/badge/nette/forms-3.0.3-blue)](https://github.com/nette/forms)
 [![Naja](https://img.shields.io/badge/naja-1.7.0-blue)](https://github.com/jiripudil/Naja)
