@@ -9,10 +9,7 @@ trait DependentControl
 {
 
 	/**
-	 * @param string $name
 	 * @param string|object $label
-	 * @param BaseControl ...$parents
-	 * @return DependentSelectBox
 	 */
 	public function addDependentSelectBox(string $name, $label, BaseControl ...$parents): DependentSelectBox
 	{

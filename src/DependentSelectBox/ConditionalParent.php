@@ -10,24 +10,16 @@ class ConditionalParent
 
 	use SmartObject;
 
-	/**
-	 * @var BaseControl
-	 */
-	private $ancestor;
+	private BaseControl $ancestor;
 
 	/**
 	 * @var mixed
 	 */
 	private $onAncestorValue;
 
-	/**
-	 * @var BaseControl
-	 */
-	private $parent;
+	private BaseControl $parent;
 
 	/**
-	 * @param BaseControl $parent
-	 * @param BaseControl $ancestor
 	 * @param mixed $onAncestorValue
 	 */
 	public function __construct(BaseControl $parent, BaseControl $ancestor, $onAncestorValue)

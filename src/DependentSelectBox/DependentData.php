@@ -9,25 +9,16 @@ class DependentData
 
 	use SmartObject;
 
-	/**
-	 * @var bool|null
-	 */
-	private $disabled;
+	private ?bool $disabled = null;
 
 	/**
 	 * @var array<int|string>
 	 */
-	private $items = [];
+	private array $items = [];
 
-	/**
-	 * @var string|null
-	 */
-	private $options;
+	private ?string $options = null;
 
-	/**
-	 * @var string|null
-	 */
-	private $prompt;
+	private ?string $prompt = null;
 
 	/**
 	 * @var int|string|null
@@ -55,7 +46,6 @@ class DependentData
 
 	/**
 	 * @param array<int|string> $items
-	 * @return DependentData
 	 */
 	public function setItems(array $items): DependentData
 	{
@@ -95,7 +85,6 @@ class DependentData
 
 	/**
 	 * @param int|string|null $value
-	 * @return DependentData
 	 */
 	public function setValue($value): DependentData
 	{

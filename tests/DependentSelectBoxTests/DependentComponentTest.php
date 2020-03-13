@@ -20,10 +20,7 @@ use Wavevision\Utils\Arrays;
 class DependentComponentTest extends TestCase
 {
 
-	/**
-	 * @var TestComponent|null
-	 */
-	private $component;
+	private ?TestComponent $component = null;
 
 	public function tearDown(): void
 	{
@@ -91,9 +88,6 @@ class DependentComponentTest extends TestCase
 	/**
 	 * @param mixed[] $query
 	 * @param mixed[] $post
-	 * @param string|null $rawBody
-	 * @param bool $ajax
-	 * @return IResponse
 	 */
 	private function runPresenter(
 		array $query = [],

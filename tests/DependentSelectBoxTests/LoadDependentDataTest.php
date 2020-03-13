@@ -266,9 +266,7 @@ class LoadDependentDataTest extends TestCase
 	}
 
 	/**
-	 * @param Form $form
 	 * @param mixed[] $options
-	 * @param string $payload
 	 * @throws DependentCallbackException
 	 * @throws JsonException
 	 */
@@ -287,7 +285,6 @@ class LoadDependentDataTest extends TestCase
 
 	/**
 	 * @param mixed[] $items
-	 * @return callable
 	 */
 	private function createDependentCallback(array $items): callable
 	{
@@ -315,9 +312,7 @@ class LoadDependentDataTest extends TestCase
 	}
 
 	/**
-	 * @param string $trigger
 	 * @param mixed[] $data
-	 * @return string
 	 * @throws JsonException
 	 */
 	private function createPayload(string $trigger, array $data): string

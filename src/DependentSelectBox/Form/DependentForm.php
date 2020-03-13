@@ -13,7 +13,7 @@ trait DependentForm
 	/**
 	 * @var DependentSelectBox[]
 	 */
-	private $dependentSelectBoxes = [];
+	private array $dependentSelectBoxes = [];
 
 	/**
 	 * @return DependentSelectBox[]

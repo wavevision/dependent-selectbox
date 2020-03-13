@@ -13,12 +13,12 @@ class DependentValues
 	/**
 	 * @var array<int|string|null>
 	 */
-	private $values;
+	private array $values;
 
 	/**
 	 * @var array<int|string|null>
 	 */
-	private $containerValues;
+	private array $containerValues;
 
 	/**
 	 * @var int|string|null
@@ -73,7 +73,6 @@ class DependentValues
 
 	/**
 	 * @param array<int|string|null> $values
-	 * @return ArrayHash
 	 */
 	private function format(array $values): ArrayHash
 	{

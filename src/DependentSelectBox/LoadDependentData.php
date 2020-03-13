@@ -21,7 +21,6 @@ class LoadDependentData
 
 	/**
 	 * @param DependentSelectBox[] $dependentSelectBoxes
-	 * @param string $json
 	 * @return array<int|string, array<string, bool|string|null>>
 	 * @throws DependentCallbackException
 	 * @throws JsonException
@@ -77,7 +76,6 @@ class LoadDependentData
 	}
 
 	/**
-	 * @param DependentSelectBox $dependentSelectBox
 	 * @param mixed[] $data
 	 * @return mixed[]
 	 */
@@ -90,7 +88,6 @@ class LoadDependentData
 	}
 
 	/**
-	 * @param DependentSelectBox $dependentSelectBox
 	 * @param mixed[] $data
 	 * @return mixed[]
 	 */
@@ -108,7 +105,6 @@ class LoadDependentData
 	}
 
 	/**
-	 * @param IComponent $control
 	 * @return array<string|null>
 	 */
 	private function getContainerPath(IComponent $control): array
@@ -124,7 +120,6 @@ class LoadDependentData
 	}
 
 	/**
-	 * @param DependentSelectBox $dependentSelectBox
 	 * @param mixed[] $data
 	 * @return mixed[]
 	 */
@@ -138,7 +133,6 @@ class LoadDependentData
 	}
 
 	/**
-	 * @param BaseControl $control
 	 * @param mixed[] $data
 	 * @return int|string|null
 	 */
@@ -148,7 +142,6 @@ class LoadDependentData
 	}
 
 	/**
-	 * @param BaseControl $control
 	 * @param mixed[] $data
 	 * @param mixed[] $values
 	 */

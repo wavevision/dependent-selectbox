@@ -9,10 +9,7 @@ use Nette\DI\Container;
 class Environment
 {
 
-	/**
-	 * @var Container
-	 */
-	private static $container;
+	private static Container $container;
 
 	public static function setup(): void
 	{

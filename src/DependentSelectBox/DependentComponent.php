@@ -13,15 +13,9 @@ use Wavevision\DependentSelectBox\Form\Form;
 trait DependentComponent
 {
 
-	/**
-	 * @var LoadDependentData
-	 */
-	private $loadDependentData;
+	private LoadDependentData $loadDependentData;
 
-	/**
-	 * @var string
-	 */
-	private $dependentForm = 'form';
+	private string $dependentForm = 'form';
 
 	/**
 	 * @return Form
@@ -60,7 +54,7 @@ trait DependentComponent
 		if ($form) {
 			$this->dependentForm = $form;
 		}
-		if (!($this->loadDependentData instanceof LoadDependentData)) {
+		if (!isset($this->loadDependentData)) {
 			$this->loadDependentData = new LoadDependentData();
 		}
 		$form = $this->getDependentForm();

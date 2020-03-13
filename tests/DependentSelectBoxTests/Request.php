@@ -8,25 +8,19 @@ use Nette\Http\UrlScript;
 class Request extends NetteRequest
 {
 
-	/**
-	 * @var bool
-	 */
-	private $ajaxMock = true;
+	private bool $ajaxMock = true;
 
 	/**
 	 * @var mixed[]
 	 */
-	private $postMock = [];
+	private array $postMock = [];
 
-	/**
-	 * @var string|null
-	 */
-	private $rawBodyMock;
+	private ?string $rawBodyMock = null;
 
 	/**
 	 * @var mixed[]
 	 */
-	private $queryMock = [];
+	private array $queryMock = [];
 
 	public function __construct()
 	{
@@ -34,7 +28,6 @@ class Request extends NetteRequest
 	}
 
 	/**
-	 * @param string|null $key
 	 * @return mixed|mixed[]
 	 */
 	public function getPost(?string $key = null)

@@ -91,7 +91,6 @@ trait DependentSelectBoxUtils
 
 	/**
 	 * @param mixed[] $parentsValues
-	 * @return bool
 	 */
 	private function isDependentDataReady(array $parentsValues): bool
 	{
@@ -111,9 +110,9 @@ trait DependentSelectBoxUtils
 		return $this->form->isAnchored() && $this->form->isSubmitted();
 	}
 
-	private function resolveValue(DependentData $dependentData): void
+	private function resolveValue(DependentData $dependentData, bool $autoSelectSingleValue): void
 	{
-		if ($this->autoSelectSingleValue && count($this->getItems()) === 1) {
+		if ($autoSelectSingleValue && count($this->getItems()) === 1) {
 			$value = key($dependentData->getItems());
 		} else {
 			$value = $dependentData->getValue();

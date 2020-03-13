@@ -12,30 +12,24 @@ class DependentSelectBox extends SelectBox
 
 	use DependentSelectBoxUtils;
 
-	/**
-	 * @var bool
-	 */
-	private $autoSelectSingleValue = false;
+	private bool $autoSelectSingleValue = false;
 
 	/**
 	 * @var ConditionalParent[]
 	 */
-	private $conditionalParents = [];
+	private array $conditionalParents = [];
 
 	/**
 	 * @var callable
 	 */
 	private $dependentCallback;
 
-	/**
-	 * @var bool
-	 */
-	private $disabledWhenEmpty = false;
+	private bool $disabledWhenEmpty = false;
 
 	/**
 	 * @var BaseControl[]
 	 */
-	private $parents;
+	private array $parents;
 
 	/**
 	 * @param string|object $label
@@ -60,10 +54,7 @@ class DependentSelectBox extends SelectBox
 	}
 
 	/**
-	 * @param BaseControl $parent
-	 * @param BaseControl $ancestor
 	 * @param mixed $onAncestorValue
-	 * @return DependentSelectBox
 	 */
 	public function addConditionalParent(
 		BaseControl $parent,
@@ -91,7 +82,6 @@ class DependentSelectBox extends SelectBox
 	/**
 	 * @param array<int|string|null> $parentsValues
 	 * @param int|string|null $selectedValue
-	 * @return DependentData
 	 * @throws DependentCallbackException
 	 */
 	public function getDependentData(array $parentsValues = [], $selectedValue = null): DependentData
@@ -129,7 +119,7 @@ class DependentSelectBox extends SelectBox
 		if ($dependentData->getPrompt() !== null) {
 			$this->setPrompt($dependentData->getPrompt());
 		}
-		$this->resolveValue($dependentData);
+		$this->resolveValue($dependentData, $this->autoSelectSingleValue);
 		$dependentData->setOptions($this->getOptionsHtml());
 		return $dependentData;
 	}
