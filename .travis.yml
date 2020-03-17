@@ -9,6 +9,7 @@ jobs:
     - stage: PHP
       language: php
       php: 7.4
+      before_install: pecl install pcov
       install: composer install
       cache:
         directories:
