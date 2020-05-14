@@ -1,11 +1,9 @@
 import { DATA_PARENT_LISTENER, DATA_PARENTS } from './constants';
 import { FormElement, Parents, ParentsValues, ParentValue } from './types';
 
-const MULTI_CHOICE = '[]';
-
 const isMultiChoice = (element: HTMLInputElement): boolean => {
   if (element.type === 'checkbox') {
-    return element.name.includes(MULTI_CHOICE);
+    return element.name.includes('[]');
   }
   return element.type === 'radio' || Boolean(element.multiple);
 };
@@ -59,8 +57,7 @@ const getParentsData = (
   for (const parent of parents) {
     const element = form.elements.namedItem(parent) as FormElement;
     if (element) {
-      const name = element.name.replace(MULTI_CHOICE, '');
-      data[name] = getParentValue(element);
+      data[element.name] = getParentValue(element);
     }
   }
   return data;
