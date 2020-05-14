@@ -17,7 +17,12 @@ export declare const SELECT_BOX_SELECTOR: string;
 export declare type DependentSelectBoxes = HTMLSelectElement[];
 export declare type FormElement = HTMLInputElement | null;
 export declare type Parents = Array<string>;
-export declare type ParentValue = boolean | number | string | null;
+export declare type ParentValue =
+  | Array<number | string>
+  | boolean
+  | number
+  | string
+  | null;
 export declare type ParentsValues = Record<string, ParentValue>;
 export declare type Response = Record<
   string,
