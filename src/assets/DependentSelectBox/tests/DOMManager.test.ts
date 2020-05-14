@@ -46,7 +46,10 @@ describe('DOMManager', () => {
       domManager.handleChange([parent.id], [selectBox])(event);
       expect(selectBox.disabled).toBe(true);
       expect(NajaMock.fireEvent).toHaveBeenCalledWith(EVENT_LOADING, {
-        data: { trigger: 'parent', values: { 'parent-name': null } },
+        data: {
+          trigger: 'parent',
+          values: { dependent: null, 'parent-name': null },
+        },
         form,
         dependentSelectBoxes: [selectBox],
       });

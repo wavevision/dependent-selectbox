@@ -10,6 +10,8 @@ export const createParent = (type = 'text'): HTMLInputElement => {
 
 export const createSelectBox = (parents?: Parents): HTMLSelectElement => {
   const selectBox = document.createElement('select');
+  selectBox.id = 'dependent';
+  selectBox.name = selectBox.id;
   selectBox.setAttribute(DATA_SELECT_BOX, '');
   if (parents) selectBox.setAttribute(DATA_PARENTS, JSON.stringify(parents));
   return selectBox;

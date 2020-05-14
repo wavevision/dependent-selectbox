@@ -4,6 +4,7 @@ import ParentsManager from './ParentsManager';
 import RequestManager from './RequestManager';
 import { DependentSelectBoxes, FormElement, Parents } from './types';
 import { SELECT_BOX_SELECTOR } from './constants';
+import DataManager from './DataManager';
 
 class DOMManager {
   public constructor(naja: Naja) {
@@ -37,19 +38,17 @@ class DOMManager {
     parents: Parents,
     selectBoxes: DependentSelectBoxes,
   ) => (event: Event): void => {
-    const input = event.target as HTMLInputElement;
-    const form = input.form as HTMLFormElement;
+    const trigger = event.target as HTMLInputElement;
+    const form = trigger.form as HTMLFormElement;
     for (const selectBox of selectBoxes) {
       const selectBoxParents = ParentsManager.getParents(selectBox);
-      selectBox.disabled = selectBoxParents.includes(input.id);
+      selectBox.disabled = selectBoxParents.includes(trigger.id);
     }
+    const formSelectBoxes = this.getFormSelectBoxes(form, selectBoxes);
     this.requestManager.handleRequest(
       form,
-      this.getFormSelectBoxes(form, selectBoxes),
-      {
-        trigger: input.id,
-        values: ParentsManager.getParentsData(form, parents),
-      },
+      formSelectBoxes,
+      DataManager.get(form, trigger, formSelectBoxes, parents),
     );
   };
 
