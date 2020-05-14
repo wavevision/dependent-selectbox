@@ -89,6 +89,15 @@ trait DependentSelectBoxUtils
 		return reset($options);
 	}
 
+	private function hidePrompt(bool $hide): void
+	{
+		if (!Arrays::isEmpty($this->getItems()) && $hide) {
+			/** @var mixed $prompt */
+			$prompt = false;
+			$this->setPrompt($prompt);
+		}
+	}
+
 	/**
 	 * @param mixed[] $parentsValues
 	 */

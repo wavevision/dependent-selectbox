@@ -200,17 +200,13 @@ class LoadDependentDataTest extends TestCase
 					$this->assertEquals(['pizza' => 'salami'], $dependentValues->getContainerRawValues());
 					return (new DependentData())->setItems([1 => 'garlic', 2 => 'pineapple']);
 				}
-			);
+			)->setHidePromptWhenFilled();
 		$this->assertHasValues(
 			$form,
 			[
 				'a-1-topping' => [
 					'disabled' => false,
 					'options' => [
-						[
-							'value' => '',
-							'text' => 'forms.general.choose',
-						],
 						[
 							'value' => 1,
 							'text' => 'garlic',

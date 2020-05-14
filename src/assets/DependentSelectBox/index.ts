@@ -9,6 +9,7 @@ class DependentSelectBox {
     this.naja = naja;
     this.domManager = new DOMManager(this.naja);
     this.naja.addEventListener('load', this.init);
+    this.naja.snippetHandler.addEventListener('afterUpdate', this.init);
   }
 
   private readonly domManager: DOMManager;

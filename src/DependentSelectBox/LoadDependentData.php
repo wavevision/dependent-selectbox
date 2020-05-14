@@ -134,7 +134,7 @@ class LoadDependentData
 
 	/**
 	 * @param mixed[] $data
-	 * @return int|string|null
+	 * @return mixed
 	 */
 	private function getValue(BaseControl $control, array $data)
 	{

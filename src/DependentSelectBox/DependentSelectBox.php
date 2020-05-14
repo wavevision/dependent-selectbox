@@ -26,6 +26,8 @@ class DependentSelectBox extends SelectBox
 
 	private bool $disabledWhenEmpty = false;
 
+	private bool $hidePromptWhenFilled = false;
+
 	/**
 	 * @var BaseControl[]
 	 */
@@ -43,6 +45,7 @@ class DependentSelectBox extends SelectBox
 
 	public function getControl(): Html
 	{
+		$this->hidePrompt($this->hidePromptWhenFilled);
 		$control = parent::getControl();
 		$control->addAttributes(
 			[
@@ -80,8 +83,8 @@ class DependentSelectBox extends SelectBox
 	}
 
 	/**
-	 * @param array<int|string|null> $parentsValues
-	 * @param int|string|null $selectedValue
+	 * @param mixed[] $parentsValues
+	 * @param mixed $selectedValue
 	 * @throws DependentCallbackException
 	 */
 	public function getDependentData(array $parentsValues = [], $selectedValue = null): DependentData
@@ -170,6 +173,12 @@ class DependentSelectBox extends SelectBox
 	public function setDisabledWhenEmpty(bool $disabledWhenEmpty = true): DependentSelectBox
 	{
 		$this->disabledWhenEmpty = $disabledWhenEmpty;
+		return $this;
+	}
+
+	public function setHidePromptWhenFilled(bool $hidePromptWhenFilled = true): DependentSelectBox
+	{
+		$this->hidePromptWhenFilled = $hidePromptWhenFilled;
 		return $this;
 	}
 

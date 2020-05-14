@@ -1,6 +1,7 @@
 {
   "extends": "@wavevision/coding-standard/ts/tsconfig.json",
   "compilerOptions": {
+    "downlevelIteration": true,
     "target": "es5",
     "typeRoots": ["./node_modules/@types"]
   },
