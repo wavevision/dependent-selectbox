@@ -27,7 +27,7 @@ describe('ParentsManager', () => {
       expect(ParentsManager.getParentValue(number)).toBe(123);
     });
     it('returns text value', () => {
-      const text = createParent();
+      const text = createParent('textarea');
       text.value = 'Some text value   ';
       expect(ParentsManager.getParentValue(text)).toBe('Some text value');
     });

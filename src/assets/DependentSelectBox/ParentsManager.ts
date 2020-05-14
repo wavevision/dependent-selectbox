@@ -1,14 +1,13 @@
 import { DATA_PARENT_LISTENER, DATA_PARENTS } from './constants';
 import { FormElement, Parents, ParentsValues, ParentValue } from './types';
 
-const isMultiChoiceParent = (element: HTMLElement): boolean => {
-  if (element instanceof HTMLSelectElement) {
-    return element.multiple;
+const MULTI_CHOICE = '[]';
+
+const isMultiChoice = (element: HTMLInputElement): boolean => {
+  if (element.type === 'checkbox') {
+    return element.name.includes(MULTI_CHOICE);
   }
-  if (element instanceof HTMLInputElement && element.type === 'checkbox') {
-    return element.name.includes('[]');
-  }
-  return false;
+  return element.type === 'radio' || Boolean(element.multiple);
 };
 
 const maybeGetNumberValue = (value: string): number | string => {
@@ -17,19 +16,19 @@ const maybeGetNumberValue = (value: string): number | string => {
   return value;
 };
 
-const getMultiChoiceParentValue = (element: HTMLElement): ParentValue => {
+const getMultiChoiceValue = (element: HTMLInputElement): ParentValue => {
   const value: ParentValue = [];
   if (element instanceof HTMLSelectElement) {
     for (const option of element.selectedOptions) {
       value.push(maybeGetNumberValue(option.value));
     }
   }
-  if (element instanceof HTMLInputElement) {
-    const checkboxes = document.querySelectorAll(
+  if (['checkbox', 'radio'].includes(element.type)) {
+    const inputs = document.querySelectorAll(
       `input[name="${element.name}"]`,
     ) as NodeListOf<HTMLInputElement>;
-    for (const checkbox of checkboxes) {
-      if (checkbox.checked) value.push(maybeGetNumberValue(checkbox.value));
+    for (const input of inputs) {
+      if (input.checked) value.push(maybeGetNumberValue(input.value));
     }
   }
   return value.length ? value : null;
@@ -44,13 +43,10 @@ const getParents = (selectBox: HTMLElement): Parents => {
 };
 
 const getParentValue = (element: HTMLInputElement): ParentValue => {
-  if (isMultiChoiceParent(element)) {
-    return getMultiChoiceParentValue(element);
-  }
-  if (['checkbox', 'radio'].includes(element.type)) {
-    return element.checked;
-  }
+  if (isMultiChoice(element)) return getMultiChoiceValue(element);
+  if (element.type === 'checkbox') return element.checked;
   const value = element.value.trim();
+  if (element.type === 'textarea') return value;
   if (value === '') return null;
   return maybeGetNumberValue(value);
 };
@@ -63,7 +59,8 @@ const getParentsData = (
   for (const parent of parents) {
     const element = form.elements.namedItem(parent) as FormElement;
     if (element) {
-      data[element.name] = getParentValue(element);
+      const name = element.name.replace(MULTI_CHOICE, '');
+      data[name] = getParentValue(element);
     }
   }
   return data;
