@@ -5,7 +5,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/wavevision/dependent-selectbox/badge.svg?branch=master&service=github)](https://coveralls.io/github/wavevision/dependent-selectbox?branch=master)
 [![PHPStan](https://img.shields.io/badge/style-level%20max-brightgreen.svg?label=phpstan)](https://github.com/phpstan/phpstan)
 [![Nette Forms](https://img.shields.io/badge/nette/forms-3.0.4-blue)](https://github.com/nette/forms)
-[![Naja](https://img.shields.io/badge/naja-1.7.0-blue)](https://github.com/jiripudil/Naja)
+[![Naja](https://img.shields.io/badge/naja-1.8.3-blue)](https://github.com/jiripudil/Naja)
 
 Dependent select box component for [nette/forms](https://github.com/nette/forms) with [naja](https://github.com/jiripudil/Naja) extension on client side.
 
@@ -147,13 +147,13 @@ Listeners for both events will receive an object with these properties:
 
 The first event also contains `data` property, which is an object containing:
 
-| Property  | Type                                                                         | Description                                                                                                                                           |
-| --------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `trigger` | `string`                                                                     | HTML `id` of a parent that triggered the event                                                                                                        |
-| `values`  | <code>Record<string, boolean &#124; number &#124; string &#124; null></code> | object with values of all parents of the select box(es) whose parent triggered the event (HTML `name` properties of parent elements are used as keys) |
+| Property  | Type                                                                   | Description                                                                                                         |
+| --------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `trigger` | `string`                                                               | HTML `id` of a parent that triggered the event                                                                      |
+| `values`  | <code>[ParentsValues](./src/assets/DependentSelectBox/types.ts)</code> | object with current values of parents and filled select boxes (HTML `name` properties of elements are used as keys) |
 
-The latter one contains `response` object of objects, in which keys are HTML `id` attributes of updated select boxes
-and values are:
+The latter one contains `response` object, in which keys are HTML `id` attributes of updated select boxes
+and values are objects with:
 
 | Property   | Type      | Description                  |
 | ---------- | --------- | ---------------------------- |

@@ -11,12 +11,12 @@ class DependentValues
 	use SmartObject;
 
 	/**
-	 * @var array<int|string|null>
+	 * @var mixed[]
 	 */
 	private array $values;
 
 	/**
-	 * @var array<int|string|null>
+	 * @var mixed[]
 	 */
 	private array $containerValues;
 
@@ -26,8 +26,8 @@ class DependentValues
 	private $selectedValue;
 
 	/**
-	 * @param array<int|string|null> $values
-	 * @param array<int|string|null> $containerValues
+	 * @param mixed[] $values
+	 * @param mixed[] $containerValues
 	 * @param int|string|null $selectedValue
 	 */
 	public function __construct(array $values, array $containerValues, $selectedValue)
@@ -46,7 +46,7 @@ class DependentValues
 	}
 
 	/**
-	 * @return array<int|string|null>
+	 * @return mixed[]
 	 */
 	public function getRawValues(): array
 	{
@@ -54,7 +54,7 @@ class DependentValues
 	}
 
 	/**
-	 * @return array<int|string|null>
+	 * @return mixed[]
 	 */
 	public function getContainerRawValues(): array
 	{
@@ -72,7 +72,7 @@ class DependentValues
 	}
 
 	/**
-	 * @param array<int|string|null> $values
+	 * @param mixed[] $values
 	 */
 	private function format(array $values): ArrayHash
 	{

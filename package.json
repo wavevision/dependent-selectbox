@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/wavevision/dependent-selectbox",
   "dependencies": {
-    "naja": "^1.7.0"
+    "naja": "^1.8.3"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
@@ -58,7 +58,7 @@
     "webpack-cli": "^3.3.9"
   },
   "peerDependencies": {
-    "naja": "^1.7.0"
+    "naja": "^1.8.x"
   },
   "scripts": {
     "build": "run-s ts:webpack ts:dts prettier:fix",
