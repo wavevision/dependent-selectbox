@@ -121,13 +121,16 @@ trait DependentSelectBoxUtils
 
 	private function resolveValue(DependentData $dependentData, bool $autoSelectSingleValue): void
 	{
-		if ($autoSelectSingleValue && count($this->getItems()) === 1) {
-			$value = key($dependentData->getItems());
-		} else {
-			$value = $dependentData->getValue();
-		}
-		if ($value !== null) {
-			$this->setValue($value);
+		$items = $this->getItems();
+		if (!Arrays::isEmpty($items)) {
+			if ($autoSelectSingleValue && count($items) === 1) {
+				$value = key($dependentData->getItems());
+			} else {
+				$value = $dependentData->getValue();
+			}
+			if ($value !== null) {
+				$this->setValue($value);
+			}
 		}
 	}
 
