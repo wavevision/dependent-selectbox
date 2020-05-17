@@ -3,6 +3,7 @@ import { Naja } from 'naja';
 import DOMManager from './DOMManager';
 import ParentsManager from './ParentsManager';
 import { DependentSelectBoxes, Parents } from './types';
+import { maybeDisableSubmit } from './utils';
 
 class DependentSelectBox {
   public constructor(naja: Naja) {
@@ -21,6 +22,7 @@ class DependentSelectBox {
     for (const selectBox of selectBoxes) {
       const parents = ParentsManager.getParents(selectBox);
       parents.forEach(this.initParent(parents, selectBoxes));
+      maybeDisableSubmit(selectBox);
     }
   };
 
