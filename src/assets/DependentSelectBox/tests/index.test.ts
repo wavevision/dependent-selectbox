@@ -1,7 +1,7 @@
 import DependentSelectBox from '../..';
 
 import NajaMock from './NajaMock';
-import { createParent, createSelectBox } from './utils';
+import { createParent, createSelectBox } from './helpers';
 
 describe('DependentSelectBox', () => {
   it('initializes extension', () => {

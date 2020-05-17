@@ -1,36 +1,10 @@
 import { DATA_PARENT_LISTENER, DATA_PARENTS } from './constants';
 import { FormElement, Parents, ParentsValues, ParentValue } from './types';
-
-const isMultiChoice = (element: HTMLInputElement): boolean => {
-  if (element.type === 'checkbox') {
-    return element.name.includes('[]');
-  }
-  return element.type === 'radio' || Boolean(element.multiple);
-};
-
-const maybeGetNumberValue = (value: string): number | string => {
-  const number = Number(value);
-  if (!Number.isNaN(number)) return number;
-  return value;
-};
-
-const getMultiChoiceValue = (element: HTMLInputElement): ParentValue => {
-  const value: ParentValue = [];
-  if (element instanceof HTMLSelectElement) {
-    for (const option of element.selectedOptions) {
-      value.push(maybeGetNumberValue(option.value));
-    }
-  }
-  if (['checkbox', 'radio'].includes(element.type)) {
-    const inputs = document.querySelectorAll(
-      `input[name="${element.name}"]`,
-    ) as NodeListOf<HTMLInputElement>;
-    for (const input of inputs) {
-      if (input.checked) value.push(maybeGetNumberValue(input.value));
-    }
-  }
-  return value.length ? value : null;
-};
+import {
+  getMultiChoiceValue,
+  isMultiChoice,
+  maybeGetNumberValue,
+} from './utils';
 
 const getParents = (selectBox: HTMLElement): Parents => {
   const parentsData = selectBox.getAttribute(DATA_PARENTS);

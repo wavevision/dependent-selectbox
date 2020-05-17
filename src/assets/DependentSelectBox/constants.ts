@@ -1,3 +1,5 @@
+export const DATA_DISALLOW_SUBMIT_WHEN_DISABLED =
+  'data-disallow-submit-when-disabled';
 export const DATA_LINK = 'data-dependent-data-link';
 export const DATA_PARENT_LISTENER = 'data-has-dependent-listener';
 export const DATA_PARENTS = 'data-parents';

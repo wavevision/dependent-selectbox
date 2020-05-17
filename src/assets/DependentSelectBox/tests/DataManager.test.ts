@@ -1,6 +1,6 @@
 import DataManager from '../DataManager';
 
-import { createSelectBox } from './utils';
+import { createSelectBox } from './helpers';
 
 describe('DataManager', () => {
   describe('get', () => {

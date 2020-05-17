@@ -7,6 +7,8 @@ declare class DependentSelectBox {
   readonly init: () => void;
   private readonly initParent;
 }
+export declare const DATA_DISALLOW_SUBMIT_WHEN_DISABLED =
+  'data-disallow-submit-when-disabled';
 export declare const DATA_LINK = 'data-dependent-data-link';
 export declare const DATA_PARENT_LISTENER = 'data-has-dependent-listener';
 export declare const DATA_PARENTS = 'data-parents';

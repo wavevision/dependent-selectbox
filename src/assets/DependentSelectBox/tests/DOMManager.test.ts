@@ -3,7 +3,7 @@ import ParentsManager from '../ParentsManager';
 import { DATA_LINK, EVENT_LOADING } from '../constants';
 
 import NajaMock from './NajaMock';
-import { createParent, createSelectBox } from './utils';
+import { createParent, createSelectBox } from './helpers';
 
 describe('DOMManager', () => {
   const domManager = new DOMManager(NajaMock);

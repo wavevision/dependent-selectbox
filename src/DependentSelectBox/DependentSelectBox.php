@@ -26,6 +26,8 @@ class DependentSelectBox extends SelectBox
 
 	private bool $disabledWhenEmpty = false;
 
+	private bool $disallowSubmitWhenDisabled = false;
+
 	private bool $hidePromptWhenFilled = false;
 
 	/**
@@ -53,6 +55,9 @@ class DependentSelectBox extends SelectBox
 				'data-parents' => $this->createParentsAttribute(),
 			]
 		);
+		if ($this->disallowSubmitWhenDisabled) {
+			$control->setAttribute('data-disallow-submit-when-disabled', true);
+		}
 		return $control;
 	}
 
@@ -173,6 +178,12 @@ class DependentSelectBox extends SelectBox
 	public function setDisabledWhenEmpty(bool $disabledWhenEmpty = true): DependentSelectBox
 	{
 		$this->disabledWhenEmpty = $disabledWhenEmpty;
+		return $this;
+	}
+
+	public function setDisallowSubmitWhenDisabled(bool $disallowSubmitWhenDisabled = true): DependentSelectBox
+	{
+		$this->disallowSubmitWhenDisabled = $disallowSubmitWhenDisabled;
 		return $this;
 	}
 

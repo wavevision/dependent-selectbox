@@ -45,7 +45,8 @@ class TestComponent extends Control
 				}
 			)
 			->addConditionalParent($container['conditional'], $container['conditionalAncestor'], 1)
-			->setDisabledWhenEmpty();
+			->setDisabledWhenEmpty()
+			->setDisallowSubmitWhenDisabled();
 		$dependentSelectbox->getValue();
 		$dependentSelectbox->isDisabled();
 		return $form;

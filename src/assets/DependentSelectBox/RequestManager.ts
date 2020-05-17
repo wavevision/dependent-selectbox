@@ -3,17 +3,12 @@ import { Naja } from 'naja';
 import {
   Request,
   DependentSelectBoxes,
-  FormElement,
   Response,
   LoadedEvent,
   LoadingEvent,
 } from './types';
-import {
-  DATA_LINK,
-  DATA_SELECT_BOX,
-  EVENT_LOADED,
-  EVENT_LOADING,
-} from './constants';
+import { maybeDisableSubmit } from './utils';
+import { DATA_LINK, EVENT_LOADED, EVENT_LOADING } from './constants';
 
 class RequestManager {
   public constructor(naja: Naja) {
@@ -28,11 +23,10 @@ class RequestManager {
     response: Response,
   ): void => {
     for (const id in response) {
-      const element = document.getElementById(id) as FormElement;
-      if (element && element.getAttribute(DATA_SELECT_BOX) !== null) {
-        element.disabled = response[id].disabled;
-        element.innerHTML = response[id].options;
-      }
+      const element = document.getElementById(id) as HTMLSelectElement;
+      element.disabled = response[id].disabled;
+      element.innerHTML = response[id].options;
+      maybeDisableSubmit(element);
     }
     const e: Partial<LoadedEvent> = { form, dependentSelectBoxes, response };
     this.naja.fireEvent(EVENT_LOADED, e);

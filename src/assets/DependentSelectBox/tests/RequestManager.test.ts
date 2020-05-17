@@ -2,7 +2,7 @@ import RequestManager from '../RequestManager';
 import { EVENT_LOADED } from '../constants';
 
 import NajaMock from './NajaMock';
-import { createSelectBox } from './utils';
+import { createSelectBox } from './helpers';
 
 describe('RequestManager', () => {
   const requestManager = new RequestManager(NajaMock);
@@ -18,7 +18,6 @@ describe('RequestManager', () => {
           disabled: true,
           options: '<option>--Some prompt--</option>',
         },
-        'undefined-selectbox': { disabled: true, options: '' },
       };
       requestManager.handleResponse(form, [selectBox], response);
       expect(selectBox.disabled).toBe(true);

@@ -1,6 +1,6 @@
 import ParentsManager from '../ParentsManager';
 
-import { createParent, createSelectBox } from './utils';
+import { createParent, createSelectBox } from './helpers';
 
 describe('ParentsManager', () => {
   describe('getParents', () => {
