@@ -127,6 +127,10 @@ trait DependentSelectBoxUtils
 				$value = key($dependentData->getItems());
 			} else {
 				$value = $dependentData->getValue();
+				//todo dependent data property
+				if (!isset($items[$value])) {
+					return;
+				}
 			}
 			if ($value !== null) {
 				$this->setValue($value);
