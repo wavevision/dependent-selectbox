@@ -4,8 +4,8 @@
 [![Build Status](https://travis-ci.org/wavevision/dependent-selectbox.svg?branch=master)](https://travis-ci.org/wavevision/dependent-selectbox)
 [![Coverage Status](https://coveralls.io/repos/github/wavevision/dependent-selectbox/badge.svg?branch=master&service=github)](https://coveralls.io/github/wavevision/dependent-selectbox?branch=master)
 [![PHPStan](https://img.shields.io/badge/style-level%20max-brightgreen.svg?label=phpstan)](https://github.com/phpstan/phpstan)
-[![Nette Forms](https://img.shields.io/badge/nette/forms-3.0.4-blue)](https://github.com/nette/forms)
-[![Naja](https://img.shields.io/badge/naja-1.8.3-blue)](https://github.com/jiripudil/Naja)
+[![Nette Forms](https://img.shields.io/badge/nette/forms-3.0-blue)](https://github.com/nette/forms)
+[![Naja](https://img.shields.io/badge/naja-2.0-blue)](https://github.com/jiripudil/Naja)
 
 Dependent select box component for [nette/forms](https://github.com/nette/forms) with [naja](https://github.com/jiripudil/Naja) extension on client side.
 
@@ -36,8 +36,6 @@ or [npm](https://npmjs.com)
 ```bash
 npm install --save @wavevision/dependent-selectbox
 ```
-
-> You might also want to add `@types/naja` to your `devDependencies` if your project uses TypeScript.
 
 ## Usage
 
@@ -127,7 +125,7 @@ There are a few ways of integrating the client side into your project.
 import naja from 'naja';
 import DependentSelectBox from '@wavevision/dependent-selectbox';
 
-naja.registerExtension(DependentSelectBox);
+naja.registerExtension(new DependentSelectBox());
 // add other extensions, initialize etc.
 ```
 
@@ -138,18 +136,18 @@ As mentioned in features, the extension emits events you can attach listeners to
 | `dependentSelectBoxLoading` | fires right after a parent changes and a request to server is being dispatched |
 | `dependentSelectBoxLoaded`  | fires when the data loading is finished                                        |
 
-Listeners for both events will receive an object with these properties:
+Listeners for both events will receive a `CustomEvent` object containing `detail` with these properties:
 
 | Property               | Type                  | Description                                        |
 | ---------------------- | --------------------- | -------------------------------------------------- |
 | `form`                 | `HTMLFormElement`     | the form in which the event has been triggered     |
 | `dependentSelectBoxes` | `HTMLSelectElement[]` | an array of all dependent select boxes in the form |
 
-The first event also contains `data` property, which is an object containing:
+The first event also contains `request` property, which is an object containing:
 
 | Property  | Type                                                                   | Description                                                                                                         |
 | --------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `trigger` | `string`                                                               | HTML `id` of a parent that triggered the event                                                                      |
+| `trigger` | `string`                                                               | HTML `id` of a parent that triggered the request                                                                    |
 | `values`  | <code>[ParentsValues](./src/assets/DependentSelectBox/types.ts)</code> | object with current values of parents and filled select boxes (HTML `name` properties of elements are used as keys) |
 
 The latter one contains `response` object, in which keys are HTML `id` attributes of updated select boxes

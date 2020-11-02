@@ -3,10 +3,14 @@
 namespace Wavevision\DependentSelectBoxTests\Presenters;
 
 use Nette\Application\UI\Control;
+use Nette\Bridges\ApplicationLatte\Template;
 use Wavevision\DependentSelectBox\DependentComponent;
 use Wavevision\DependentSelectBox\DependentData;
 use Wavevision\DependentSelectBox\Form\Form;
 
+/**
+ * @property-read Template $template
+ */
 class TestComponent extends Control
 {
 
@@ -33,18 +37,18 @@ class TestComponent extends Control
 	private function createForm(): Form
 	{
 		$form = new Form();
-		$form->addSelect('one', 'One', ['something', 'something else']);
+		$one = $form->addSelect('one', 'One', ['something', 'something else']);
 		$container = $form->addContainer('container');
-		$container->addSelect('conditionalAncestor', 'Conditional ancestor', ['haha', 'hehe']);
-		$container->addText('conditional', 'Conditional');
-		$form->addRadioList('radio', 'Hello', ['la', 'lala']);
-		$dependentSelectbox = $form->addDependentSelectBox('two', 'Two', $form['one'], $form['radio'])
+		$conditionalAncestor = $container->addSelect('conditionalAncestor', 'Conditional ancestor', ['haha', 'hehe']);
+		$conditional = $container->addText('conditional', 'Conditional');
+		$radio = $form->addRadioList('radio', 'Hello', ['la', 'lala']);
+		$dependentSelectbox = $form->addDependentSelectBox('two', 'Two', $one, $radio)
 			->setDependentCallback(
 				function (): DependentData {
 					return new DependentData();
 				}
 			)
-			->addConditionalParent($container['conditional'], $container['conditionalAncestor'], 1)
+			->addConditionalParent($conditional, $conditionalAncestor, 1)
 			->setDisabledWhenEmpty()
 			->setDisallowSubmitWhenDisabled();
 		$dependentSelectbox->getValue();

@@ -20,12 +20,7 @@ use Wavevision\Utils\Arrays;
 class DependentComponentTest extends TestCase
 {
 
-	private ?TestComponent $component = null;
-
-	public function tearDown(): void
-	{
-		$this->component = null;
-	}
+	private TestComponent $component;
 
 	public function testDefault(): void
 	{
@@ -38,6 +33,7 @@ class DependentComponentTest extends TestCase
 
 	public function testHandleLoadDependentData(): void
 	{
+		/** @var JsonResponse $response */
 		$response = $this->runPresenter(
 			$this->getComponentSignal(),
 			[],
@@ -98,11 +94,14 @@ class DependentComponentTest extends TestCase
 		$container = Environment::getContainer();
 		/** @var PresenterFactory $presenterFactory */
 		$presenterFactory = $container->getByType(IPresenterFactory::class);
+		/** @var string $presenterName */
 		$presenterName = $presenterFactory->unformatPresenterClass(TestPresenter::class);
 		/** @var TestPresenter $presenter */
 		$presenter = $presenterFactory->createPresenter($presenterName);
 		$presenter->autoCanonicalize = false;
-		$presenter->getHttpRequest()
+		/** @var \Wavevision\DependentSelectBoxTests\Request $request */
+		$request = $presenter->getHttpRequest();
+		$request
 			->setAjaxMock($ajax)
 			->setPostMock($post)
 			->setRawBodyMock($rawBody)

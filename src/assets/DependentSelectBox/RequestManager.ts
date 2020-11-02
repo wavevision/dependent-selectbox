@@ -1,12 +1,6 @@
 import { Naja } from 'naja';
 
-import {
-  Request,
-  DependentSelectBoxes,
-  Response,
-  LoadedEvent,
-  LoadingEvent,
-} from './types';
+import { Request, DependentSelectBoxes, Response } from './types';
 import { maybeDisableSubmit } from './utils';
 import { DATA_LINK, EVENT_LOADED, EVENT_LOADING } from './constants';
 
@@ -28,14 +22,17 @@ class RequestManager {
       element.innerHTML = response[id].options;
       maybeDisableSubmit(element);
     }
-    const e: Partial<LoadedEvent> = { form, dependentSelectBoxes, response };
-    this.naja.fireEvent(EVENT_LOADED, e);
+    this.naja.dispatchEvent(
+      new CustomEvent(EVENT_LOADED, {
+        detail: { form, dependentSelectBoxes, response },
+      }),
+    );
   };
 
   public handleRequest = async (
     form: HTMLFormElement,
     dependentSelectBoxes: DependentSelectBoxes,
-    data: Request,
+    request: Request,
   ): Promise<void> => {
     const link = form.getAttribute(DATA_LINK);
     if (!link) {
@@ -43,13 +40,21 @@ class RequestManager {
         `Form "${form.id}" must have "data-dependent-data-link" attribute!`,
       );
     }
-    const e: Partial<LoadingEvent> = { data, form, dependentSelectBoxes };
-    this.naja.fireEvent(EVENT_LOADING, e);
-    const response: Response = await this.naja.makeRequest('POST', link, data, {
-      dataType: 'json',
-      history: false,
-      responseType: 'json',
-    });
+    this.naja.dispatchEvent(
+      new CustomEvent(EVENT_LOADING, {
+        detail: { form, dependentSelectBoxes, request },
+      }),
+    );
+    const response: Response = await this.naja.makeRequest(
+      'POST',
+      link,
+      request,
+      {
+        dataType: 'json',
+        history: false,
+        responseType: 'json',
+      },
+    );
     this.handleResponse(form, dependentSelectBoxes, response);
   };
 }

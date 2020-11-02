@@ -3,7 +3,7 @@ import { Naja } from 'naja';
 const NajaMock = {
   addEventListener: jest.fn(),
   defaultOptions: {},
-  fireEvent: jest.fn(),
+  dispatchEvent: jest.fn(),
   initialize: jest.fn(),
   makeRequest: jest.fn(),
   registerExtension: jest.fn(),

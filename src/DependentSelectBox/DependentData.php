@@ -3,6 +3,7 @@
 namespace Wavevision\DependentSelectBox;
 
 use Nette\SmartObject;
+use function is_scalar;
 
 class DependentData
 {

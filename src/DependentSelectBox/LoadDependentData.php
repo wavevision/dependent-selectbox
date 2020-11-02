@@ -9,6 +9,7 @@ use Nette\SmartObject;
 use Nette\Utils\Json;
 use Nette\Utils\JsonException;
 use Wavevision\Utils\Arrays;
+use function array_filter;
 
 class LoadDependentData
 {
@@ -22,7 +23,7 @@ class LoadDependentData
 	/**
 	 * @param DependentSelectBox[] $dependentSelectBoxes
 	 * @return array<int|string, array<string, bool|string|null>>
-	 * @throws DependentCallbackException
+	 * @throws InvalidDependentCallback
 	 * @throws JsonException
 	 */
 	public function process(array $dependentSelectBoxes, string $json): array

@@ -18,7 +18,7 @@ trait DependentContainer
 		if ($this->currentGroup !== null) {
 			$this->currentGroup->add($control);
 		}
-		return $this[$name] = $control;
+		return $this[$name] = $control; // @phpstan-ignore-line
 	}
 
 }

@@ -2,15 +2,19 @@
 
 namespace Wavevision\DependentSelectBoxTests;
 
+use Nette\Forms\Controls\SelectBox;
 use Nette\Utils\Html;
 use Nette\Utils\Json;
 use Nette\Utils\JsonException;
 use PHPUnit\Framework\TestCase;
-use Wavevision\DependentSelectBox\DependentCallbackException;
 use Wavevision\DependentSelectBox\DependentData;
+use Wavevision\DependentSelectBox\DependentSelectBox;
 use Wavevision\DependentSelectBox\DependentValues;
 use Wavevision\DependentSelectBox\Form\Form;
+use Wavevision\DependentSelectBox\InvalidDependentCallback;
 use Wavevision\DependentSelectBox\LoadDependentData;
+use function array_map;
+use function implode;
 
 class LoadDependentDataTest extends TestCase
 {
@@ -26,7 +30,7 @@ class LoadDependentDataTest extends TestCase
 		$form = $this->createForm();
 		$form->getRenderer()->render($form);
 		$process = new LoadDependentData();
-		$this->expectException(DependentCallbackException::class);
+		$this->expectException(InvalidDependentCallback::class);
 		$process->process(
 			$form->getDependentSelectBoxes(),
 			$this->createFormPayload()
@@ -36,14 +40,14 @@ class LoadDependentDataTest extends TestCase
 	public function testThrowCallbackMustReturnDependentData(): void
 	{
 		$form = $this->createForm();
-		$form[self::SECOND]->setDependentCallback(
-			function (DependentValues $values) {
+		$this->getSelectBox($form, self::SECOND)->setDependentCallback(
+			function () {
 				return 'something misguided';
 			}
 		);
 		$form->getRenderer()->render($form);
 		$process = new LoadDependentData();
-		$this->expectException(DependentCallbackException::class);
+		$this->expectException(InvalidDependentCallback::class);
 		$process->process($form->getDependentSelectBoxes(), $this->createFormPayload());
 	}
 
@@ -53,7 +57,7 @@ class LoadDependentDataTest extends TestCase
 		$payloadValues = [
 			self::FIRST => 1,
 		];
-		$form[self::SECOND]
+		$this->getSelectBox($form, self::SECOND)
 			->setDependentCallback(
 				function (DependentValues $values) use ($payloadValues) {
 					$this->assertEquals($payloadValues, $values->getRawValues());
@@ -96,7 +100,7 @@ class LoadDependentDataTest extends TestCase
 		$payloadValues = [
 			self::FIRST => 1,
 		];
-		$form[self::SECOND]
+		$this->getSelectBox($form, self::SECOND)
 			->setAutoSelectSingleValue(true)
 			->setDependentCallback($this->createDependentCallback([1 => 'one']));
 		$this->assertHasValues(
@@ -130,9 +134,18 @@ class LoadDependentDataTest extends TestCase
 		$payloadValues = [
 			self::FIRST => 1,
 		];
-		$form[self::SECOND]
+		$this->getSelectBox($form, self::SECOND)
 			->setDependentCallback($this->createDependentCallback([1 => 1, 2 => 2]));
-		$form->addDependentSelectBox(self::THIRD, self::THIRD, $form[self::FIRST], $form[self::SECOND])
+		/** @var SelectBox $first */
+		$first = $form[self::FIRST];
+		/** @var SelectBox $second */
+		$second = $form[self::SECOND];
+		$form->addDependentSelectBox(
+			self::THIRD,
+			self::THIRD,
+			$first,
+			$second,
+		)
 			->setDependentCallback($this->createDependentCallback([3 => 3, 4 => 4]))
 			->setPrompt('third prompt');
 		$this->assertHasValues(
@@ -180,11 +193,11 @@ class LoadDependentDataTest extends TestCase
 		];
 		$containerA = $form->addContainer('a');
 		$containerB = $form->addContainer('b');
-		$containerB->addText('hamburger');
-		$containerB->addDependentSelectBox('parts', 'parts', $containerB['hamburger']);
+		$hamburger = $containerB->addText('hamburger');
+		$containerB->addDependentSelectBox('parts', 'parts', $hamburger);
 		$containerA1 = $containerA->addContainer('1');
-		$containerA1->addText('pizza', 'pizza');
-		$containerA1->addDependentSelectBox('topping', 'topping', $containerA1['pizza'])
+		$pizza = $containerA1->addText('pizza', 'pizza');
+		$containerA1->addDependentSelectBox('topping', 'topping', $pizza)
 			->setDependentCallback(
 				function (DependentValues $dependentValues) {
 					$this->assertEquals(
@@ -225,10 +238,10 @@ class LoadDependentDataTest extends TestCase
 	public function testReturnConditionalDependentData(): void
 	{
 		$form = new Form();
-		$form->addSelect('shoeSize', 'shoeSize', [1 => '42', 2 => '43', 3 => 'other']);
-		$form->addText('customShoeSize', 'customShoeSize');
-		$form->addDependentSelectBox('shoe', 'shoe', $form['shoeSize'])
-			->addConditionalParent($form['customShoeSize'], $form['shoeSize'], 'other')
+		$shoeSize = $form->addSelect('shoeSize', 'shoeSize', [1 => '42', 2 => '43', 3 => 'other']);
+		$customShoeSize = $form->addText('customShoeSize', 'customShoeSize');
+		$form->addDependentSelectBox('shoe', 'shoe', $shoeSize)
+			->addConditionalParent($customShoeSize, $shoeSize, 'other')
 			->setDependentCallback($this->createDependentCallback([1 => 'adidas', 2 => 'nike']));
 		$this->assertHasValues(
 			$form,
@@ -263,7 +276,7 @@ class LoadDependentDataTest extends TestCase
 
 	/**
 	 * @param mixed[] $options
-	 * @throws DependentCallbackException
+	 * @throws InvalidDependentCallback
 	 * @throws JsonException
 	 */
 	private function assertHasValues(Form $form, array $options, string $payload): void
@@ -296,7 +309,13 @@ class LoadDependentDataTest extends TestCase
 		$form = new Form();
 		$form->addSelect(self::FIRST, self::FIRST, [1 => 'one', 2 => 'two'])
 			->setPrompt('--choose--');
-		$form->addDependentSelectBox(self::SECOND, self::SECOND, $form[self::FIRST])
+		/** @var SelectBox $first */
+		$first = $form[self::FIRST];
+		$form->addDependentSelectBox(
+			self::SECOND,
+			self::SECOND,
+			$first
+		)
 			->setPrompt('--choose from parent first--')
 			->setDisabledWhenEmpty();
 		return $form;
@@ -352,6 +371,13 @@ class LoadDependentDataTest extends TestCase
 	private function getFormName(string $name): string
 	{
 		return "frm-$name";
+	}
+
+	private function getSelectBox(Form $form, string $name): DependentSelectBox
+	{
+		/** @var DependentSelectBox $selectBox */
+		$selectBox = $form[$name];
+		return $selectBox;
 	}
 
 	private function renderOptions(string ...$options): string

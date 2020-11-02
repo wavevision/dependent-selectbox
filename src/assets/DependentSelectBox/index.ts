@@ -1,23 +1,20 @@
-import { Naja } from 'naja';
+import { Extension, Naja } from 'naja';
 
 import DOMManager from './DOMManager';
 import ParentsManager from './ParentsManager';
 import { DependentSelectBoxes, Parents } from './types';
 import { maybeDisableSubmit } from './utils';
 
-class DependentSelectBox {
-  public constructor(naja: Naja) {
-    this.naja = naja;
-    this.domManager = new DOMManager(this.naja);
-    this.naja.addEventListener('load', this.init);
-    this.naja.snippetHandler.addEventListener('afterUpdate', this.init);
-  }
+class DependentSelectBox implements Extension {
+  private domManager: DOMManager;
 
-  private readonly domManager: DOMManager;
+  public readonly initialize = (naja: Naja): void => {
+    this.domManager = new DOMManager(naja);
+    naja.addEventListener('load', this.load);
+    naja.snippetHandler.addEventListener('afterUpdate', this.load);
+  };
 
-  private readonly naja: Naja;
-
-  public readonly init = (): void => {
+  public readonly load = (): void => {
     const selectBoxes = this.domManager.findSelectBoxes();
     for (const selectBox of selectBoxes) {
       const parents = ParentsManager.getParents(selectBox);

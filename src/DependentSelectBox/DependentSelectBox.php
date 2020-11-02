@@ -6,6 +6,8 @@ use Nette\Forms\Controls\BaseControl;
 use Nette\Forms\Controls\SelectBox;
 use Nette\Utils\Html;
 use Wavevision\Utils\Arrays;
+use function is_callable;
+use function sprintf;
 
 class DependentSelectBox extends SelectBox
 {
@@ -90,12 +92,12 @@ class DependentSelectBox extends SelectBox
 	/**
 	 * @param mixed[] $parentsValues
 	 * @param mixed $selectedValue
-	 * @throws DependentCallbackException
+	 * @throws InvalidDependentCallback
 	 */
 	public function getDependentData(array $parentsValues = [], $selectedValue = null): DependentData
 	{
 		if (!is_callable($this->dependentCallback)) {
-			throw new DependentCallbackException(
+			throw new InvalidDependentCallback(
 				sprintf('Dependent callback for "%s" must be set.', $this->getHtmlId())
 			);
 		}
@@ -106,7 +108,7 @@ class DependentSelectBox extends SelectBox
 			new DependentValues($parentsValues, $this->getCurrentContainerValues($parentsValues), $selectedValue)
 		);
 		if (!($dependentData instanceof DependentData)) {
-			throw new DependentCallbackException(
+			throw new InvalidDependentCallback(
 				sprintf(
 					'Dependent callback for "%s" must return an instance of %s.',
 					$this->getHtmlId(),

@@ -2,7 +2,6 @@
 
 namespace Wavevision\DependentSelectBox;
 
-use Nette\Application\UI\Form as NetteForm;
 use Nette\Application\UI\Presenter;
 use Nette\InvalidStateException;
 use Wavevision\DependentSelectBox\Form\Form;
@@ -17,25 +16,16 @@ trait DependentComponent
 
 	private string $dependentForm = 'form';
 
-	/**
-	 * @return Form
-	 */
-	public function getDependentForm(): NetteForm
-	{
-		return $this[$this->dependentForm];
-	}
-
 	public function handleLoadDependentData(): void
 	{
 		$body = $this->presenter->getHttpRequest()->getRawBody();
 		if (!$body) {
 			throw new InvalidStateException('Request body not provided.');
 		}
+		/** @var Form $form */
+		$form = $this[$this->dependentForm];
 		$this->presenter->sendJson(
-			$this->loadDependentData->process(
-				$this->getDependentForm()->getDependentSelectBoxes(),
-				$body
-			)
+			$this->loadDependentData->process($form->getDependentSelectBoxes(), $body)
 		);
 	} // @codeCoverageIgnore
 
@@ -57,16 +47,16 @@ trait DependentComponent
 		if (!isset($this->loadDependentData)) {
 			$this->loadDependentData = new LoadDependentData();
 		}
-		$form = $this->getDependentForm();
+		/** @var Form $form */
+		$form = $this[$this->dependentForm];
 		$form->getElementPrototype()
 			->setAttribute(
 				'data-dependent-data-link',
 				$this->link('loadDependentData!')
 			);
-		/** @param Form $form */
-		$form->onSubmit[] = function (NetteForm $form): void {
+		$form->onSubmit[] = function () use ($form): void {
 			foreach ($form->getDependentSelectBoxes() as $selectBox) {
-				$selectBox->getDependentData($form->getValues('array'), $selectBox->getValue());
+				$selectBox->getDependentData((array)$form->getValues(), $selectBox->getValue());
 			}
 		};
 	}

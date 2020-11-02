@@ -1,2 +1,4 @@
-**/node_modules/**
-**/vendor/**
+/dist
+/node_modules
+/temp
+/vendor
