@@ -15,15 +15,12 @@ export interface Request {
   values: ParentsValues;
 }
 
-type DependentEventDetail<T> = {
-  form: HTMLFormElement;
-  dependentSelectBoxes: DependentSelectBoxes;
-} & T;
-
-export type LoadingEvent = CustomEvent<
-  DependentEventDetail<{ request: Request }>
+type DependentEvent<T> = CustomEvent<
+  {
+    form: HTMLFormElement;
+    dependentSelectBoxes: DependentSelectBoxes;
+  } & T
 >;
 
-export type LoadedEvent = CustomEvent<
-  DependentEventDetail<{ response: Response }>
->;
+export type LoadingEvent = DependentEvent<{ request: Request }>;
+export type LoadedEvent = DependentEvent<{ response: Response }>;

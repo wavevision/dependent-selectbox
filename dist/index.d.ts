@@ -29,16 +29,16 @@ export interface Request {
 	trigger: string;
 	values: ParentsValues;
 }
-export declare type DependentEventDetail<T> = {
+export declare type DependentEvent<T> = CustomEvent<{
 	form: HTMLFormElement;
 	dependentSelectBoxes: DependentSelectBoxes;
-} & T;
-export declare type LoadingEvent = CustomEvent<DependentEventDetail<{
+} & T>;
+export declare type LoadingEvent = DependentEvent<{
 	request: Request;
-}>>;
-export declare type LoadedEvent = CustomEvent<DependentEventDetail<{
+}>;
+export declare type LoadedEvent = DependentEvent<{
 	response: Response;
-}>>;
+}>;
 export default DependentSelectBox;
 
 export as namespace DependentSelectBox;

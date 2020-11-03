@@ -1,6 +1,12 @@
 import { Naja } from 'naja';
 
-import { Request, DependentSelectBoxes, Response } from './types';
+import {
+  Request,
+  DependentSelectBoxes,
+  Response,
+  LoadingEvent,
+  LoadedEvent,
+} from './types';
 import { maybeDisableSubmit } from './utils';
 import { DATA_LINK, EVENT_LOADED, EVENT_LOADING } from './constants';
 
@@ -22,11 +28,10 @@ class RequestManager {
       element.innerHTML = response[id].options;
       maybeDisableSubmit(element);
     }
-    this.naja.dispatchEvent(
-      new CustomEvent(EVENT_LOADED, {
-        detail: { form, dependentSelectBoxes, response },
-      }),
-    );
+    const e: LoadedEvent = new CustomEvent(EVENT_LOADED, {
+      detail: { form, dependentSelectBoxes, response },
+    });
+    this.naja.dispatchEvent(e);
   };
 
   public handleRequest = async (
@@ -40,11 +45,10 @@ class RequestManager {
         `Form "${form.id}" must have "data-dependent-data-link" attribute!`,
       );
     }
-    this.naja.dispatchEvent(
-      new CustomEvent(EVENT_LOADING, {
-        detail: { form, dependentSelectBoxes, request },
-      }),
-    );
+    const e: LoadingEvent = new CustomEvent(EVENT_LOADING, {
+      detail: { form, dependentSelectBoxes, request },
+    });
+    this.naja.dispatchEvent(e);
     const response: Response = await this.naja.makeRequest(
       'POST',
       link,
