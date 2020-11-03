@@ -71,7 +71,7 @@
     "postversion-push:tags": "yarn postversion-push --tags",
     "prettier": "prettier --check '**/*.{md,ts}'",
     "prettier-fix": "yarn prettier --write",
-    "preversion": "run-s phing fix build",
+    "preversion": "run-s make fix build",
     "test": "jest",
     "test-coverage": "yarn test --coverage",
     "test-coverage-report": "yarn test-coverage && cat temp/coverage/ts/lcov.info | coveralls --verbose",
