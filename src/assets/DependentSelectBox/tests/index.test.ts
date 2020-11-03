@@ -8,7 +8,8 @@ describe('DependentSelectBox', () => {
     const parent = createParent();
     const selectBox = createSelectBox([parent.id, 'undefined-parent']);
     document.body.append(selectBox, parent);
-    const extension = new DependentSelectBox(NajaMock);
-    expect(extension.init()).toBeUndefined();
+    const extension = new DependentSelectBox();
+    extension.initialize(NajaMock);
+    expect(extension.load()).toBeUndefined();
   });
 });

@@ -4,7 +4,7 @@ namespace Wavevision\DependentSelectBox;
 
 use Exception;
 
-class DependentCallbackException extends Exception
+class InvalidDependentCallback extends Exception
 {
 
 }

@@ -8,6 +8,14 @@ use Nette\Forms\Controls\CheckboxList;
 use Nette\Forms\Controls\RadioList;
 use Nette\Utils\Json;
 use Wavevision\Utils\Arrays;
+use function array_keys;
+use function array_merge;
+use function array_unshift;
+use function count;
+use function in_array;
+use function is_array;
+use function key;
+use function reset;
 
 /**
  * @property-read ConditionalParent[] $conditionalParents

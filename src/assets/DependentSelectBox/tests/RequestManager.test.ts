@@ -22,11 +22,15 @@ describe('RequestManager', () => {
       requestManager.handleResponse(form, [selectBox], response);
       expect(selectBox.disabled).toBe(true);
       expect(selectBox.firstChild).toBeInstanceOf(HTMLOptionElement);
-      expect(NajaMock.fireEvent).toHaveBeenCalledWith(EVENT_LOADED, {
-        form,
-        dependentSelectBoxes: [selectBox],
-        response,
-      });
+      expect(NajaMock.dispatchEvent).toHaveBeenCalledWith(
+        new CustomEvent(EVENT_LOADED, {
+          detail: {
+            form,
+            dependentSelectBoxes: [selectBox],
+            response,
+          },
+        }),
+      );
     });
   });
   describe('handleRequest', () => {

@@ -1,5 +1,3 @@
-import { EVENT_LOADED, EVENT_LOADING } from './constants';
-
 export type DependentSelectBoxes = HTMLSelectElement[];
 export type FormElement = HTMLInputElement | null;
 export type Parents = Array<string>;
@@ -17,17 +15,15 @@ export interface Request {
   values: ParentsValues;
 }
 
-export interface DependentEvent extends Event {
+type DependentEventDetail<T> = {
   form: HTMLFormElement;
   dependentSelectBoxes: DependentSelectBoxes;
-}
+} & T;
 
-export interface LoadingEvent extends DependentEvent {
-  data: Request;
-  type: typeof EVENT_LOADING;
-}
+export type LoadingEvent = CustomEvent<
+  DependentEventDetail<{ request: Request }>
+>;
 
-export interface LoadedEvent extends DependentEvent {
-  response: Response;
-  type: typeof EVENT_LOADED;
-}
+export type LoadedEvent = CustomEvent<
+  DependentEventDetail<{ response: Response }>
+>;

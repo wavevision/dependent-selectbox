@@ -15,7 +15,6 @@ const config: Configuration = {
   output: {
     filename: '[name].js',
     library,
-    libraryExport: 'default',
     libraryTarget: 'umd',
     path: output,
     umdNamedDefine: true,
@@ -31,7 +30,7 @@ const config: Configuration = {
         terserOptions: {
           compress: {
             unused: true,
-            dead_code: true, // eslint-disable-line @typescript-eslint/camelcase
+            dead_code: true,
             warnings: false,
           },
           mangle: true,

@@ -45,14 +45,18 @@ describe('DOMManager', () => {
       parent.dispatchEvent(event);
       domManager.handleChange([parent.id], [selectBox])(event);
       expect(selectBox.disabled).toBe(true);
-      expect(NajaMock.fireEvent).toHaveBeenCalledWith(EVENT_LOADING, {
-        data: {
-          trigger: 'parent',
-          values: { dependent: null, 'parent-name': null },
-        },
-        form,
-        dependentSelectBoxes: [selectBox],
-      });
+      expect(NajaMock.dispatchEvent).toHaveBeenCalledWith(
+        new CustomEvent(EVENT_LOADING, {
+          detail: {
+            data: {
+              trigger: 'parent',
+              values: { dependent: null, 'parent-name': null },
+            },
+            form,
+            dependentSelectBoxes: [selectBox],
+          },
+        }),
+      );
       expect(NajaMock.makeRequest).toHaveBeenCalledTimes(1);
     });
   });
