@@ -114,7 +114,7 @@ class DependentComponentTest extends TestCase
 				$post
 			)
 		);
-		$this->component = $presenter->getComponent(TestPresenter::COMPONENT, false);
+		$this->component = $presenter->getComponent(TestPresenter::COMPONENT);
 		return $response;
 	}
 

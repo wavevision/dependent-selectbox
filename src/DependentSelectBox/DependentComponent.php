@@ -56,7 +56,9 @@ trait DependentComponent
 			);
 		$form->onSubmit[] = function () use ($form): void {
 			foreach ($form->getDependentSelectBoxes() as $selectBox) {
-				$selectBox->getDependentData((array)$form->getValues(), $selectBox->getValue());
+				/** @var array<mixed> $values */
+				$values = $form->getValues('array');
+				$selectBox->getDependentData($values, $selectBox->getValue());
 			}
 		};
 	}
