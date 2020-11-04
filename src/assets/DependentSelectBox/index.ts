@@ -10,7 +10,8 @@ class DependentSelectBox implements Extension {
 
   public readonly initialize = (naja: Naja): void => {
     this.domManager = new DOMManager(naja);
-    naja.addEventListener('load', this.load);
+    naja.addEventListener('init', this.load);
+    naja.addEventListener('complete', this.load);
     naja.snippetHandler.addEventListener('afterUpdate', this.load);
   };
 
