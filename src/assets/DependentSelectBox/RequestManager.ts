@@ -52,11 +52,14 @@ class RequestManager {
     const response: Response = await this.naja.makeRequest(
       'POST',
       link,
-      request,
+      JSON.stringify(request),
       {
-        dataType: 'json',
+        fetch: {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
         history: false,
-        responseType: 'json',
       },
     );
     this.handleResponse(form, dependentSelectBoxes, response);
