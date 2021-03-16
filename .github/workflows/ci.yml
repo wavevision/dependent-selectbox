@@ -42,13 +42,11 @@ jobs:
         run: composer install
       - name: CI
         run: make ci
-      - name: Coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          flag-name: php
-          path-to-lcov: ./temp/coverage/php/coverage.xml
-          parallel: true
+      - name: Coverage
+        env:
+          COVERALLS_PARALLEL: true
+          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: vendor/bin/php-coveralls --coverage_clover=temp/coverage/php/coverage.xml
   typescript:
     name: TypeScript
     runs-on: ubuntu-latest
@@ -68,13 +66,11 @@ jobs:
         run: yarn install
       - name: CI
         run: yarn ci
-      - name: Coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          flag-name: typescript
-          path-to-lcov: ./temp/coverage/ts/lcov.info
-          parallel: true
+      - name: Coverage
+        env:
+          COVERALLS_PARALLEL: true
+          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: yarn coveralls < temp/coverage/ts/lcov.info
   coverage:
     name: Coverage Report
     runs-on: ubuntu-latest
@@ -83,9 +79,6 @@ jobs:
       - typescript
     steps:
       - name: Coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          parallel-finished: true
+        run: curl -k coveralls.io/webhook?repo_token=${{ secrets.GITHUB_TOKEN }} -d "payload[build_num]=${{ github.run_id }}&payload[status]=done"
 
 

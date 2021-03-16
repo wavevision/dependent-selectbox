@@ -1,2 +1,2 @@
-service_name: github
+service_name: github-actions
 json_path: temp/coveralls.json
