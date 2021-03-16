@@ -45,7 +45,7 @@ jobs:
       - name: Coverage
         env:
           COVERALLS_PARALLEL: true
-          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
         run: vendor/bin/php-coveralls --coverage_clover=temp/coverage/php/coverage.xml
   typescript:
     name: TypeScript
@@ -69,7 +69,7 @@ jobs:
       - name: Coverage
         env:
           COVERALLS_PARALLEL: true
-          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
         run: yarn coveralls < temp/coverage/ts/lcov.info
   coverage:
     name: Coverage Report
@@ -79,6 +79,6 @@ jobs:
       - typescript
     steps:
       - name: Coveralls
-        run: curl -k coveralls.io/webhook?repo_token=${{ secrets.GITHUB_TOKEN }} -d "payload[build_num]=${{ github.run_id }}&payload[status]=done"
+        run: curl -k coveralls.io/webhook?repo_token=${{ secrets.COVERALLS_TOKEN }} -d "payload[build_num]=${{ github.run_id }}&payload[status]=done"
 
 
