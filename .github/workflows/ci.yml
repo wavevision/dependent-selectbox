@@ -45,7 +45,8 @@ jobs:
       - name: Coverage
         env:
           COVERALLS_PARALLEL: true
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
+          # [1] I have no fucking clue why this has to be GITHUB_TOKEN instead of COVERALLS_TOKEN 🤷‍
+          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: vendor/bin/php-coveralls --coverage_clover=temp/coverage/php/coverage.xml
   typescript:
     name: TypeScript
@@ -69,6 +70,7 @@ jobs:
       - name: Coverage
         env:
           COVERALLS_PARALLEL: true
+          # [1] Here, it's working!
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
         run: yarn coveralls < temp/coverage/ts/lcov.info
   coverage:
