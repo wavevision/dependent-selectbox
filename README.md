@@ -1,7 +1,7 @@
 <p align="center"><a href="https://github.com/wavevision"><img alt="Wavevision s.r.o." src="https://wavevision.com/images/wavevision-logo.png" width="120" /></a></p>
 <h1 align="center">Dependent SelectBox</h1>
 
-[![Build Status](https://travis-ci.org/wavevision/dependent-selectbox.svg?branch=master)](https://travis-ci.org/wavevision/dependent-selectbox)
+[![CI](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)](https://github.com/wavevision/dependent-selectbox/actions/workflows/ci.yml)
 [![Coverage Status](https://coveralls.io/repos/github/wavevision/dependent-selectbox/badge.svg?branch=master&service=github)](https://coveralls.io/github/wavevision/dependent-selectbox?branch=master)
 [![PHPStan](https://img.shields.io/badge/style-level%20max-brightgreen.svg?label=phpstan)](https://github.com/phpstan/phpstan)
 [![Nette Forms](https://img.shields.io/badge/nette/forms-3.0-blue)](https://github.com/nette/forms)
