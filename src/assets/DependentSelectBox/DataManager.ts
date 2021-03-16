@@ -7,15 +7,16 @@ const get = (
   selectBoxes: DependentSelectBoxes,
   parents: Parents,
 ): Request => {
-  const selectBoxesIds = [];
+  const elementIds = [];
   for (const selectBox of selectBoxes) {
-    if (!parents.includes(selectBox.id)) {
-      selectBoxesIds.push(selectBox.id);
+    if (!parents.includes(selectBox.id)) elementIds.push(selectBox.id);
+    for (const parent of ParentsManager.getParents(selectBox)) {
+      if (!elementIds.includes(parent)) elementIds.push(parent);
     }
   }
   const values = ParentsManager.getParentsData(form, [
     ...parents,
-    ...selectBoxesIds,
+    ...elementIds,
   ]);
   return { trigger: trigger.id, values };
 };
