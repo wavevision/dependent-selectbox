@@ -75,13 +75,14 @@ jobs:
           flag-name: typescript
           path-to-lcov: ./temp/coverage/ts/lcov.info
           parallel: true
-  finish:
+  coverage:
+    name: Coverage Report
     runs-on: ubuntu-latest
     needs:
       - php
       - typescript
     steps:
-      - name: Coveralls Finished
+      - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
