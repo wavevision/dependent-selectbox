@@ -42,7 +42,6 @@
     "latte/latte": "^2.5",
     "nette/application": "^3.0",
     "nette/bootstrap": "^3.0",
-    "php-coveralls/php-coveralls": "^2.1",
     "phpstan/extension-installer": "^1.0",
     "phpstan/phpstan-nette": "^0.12.9",
     "phpunit/phpunit": "^9.4",
