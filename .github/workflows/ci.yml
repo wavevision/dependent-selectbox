@@ -54,6 +54,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Setup node version
+        run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+        id: nvm
+      - name: Setup node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{steps.nvm.outputs.NODE_VERSION }}
       - name: Setup yarn cache
         id: yarncache
         run: echo ::set-output name=dir::$(yarn cache dir)
