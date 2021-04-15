@@ -1,4 +1,5 @@
-import { Extension, Naja } from 'naja';
+import { Naja } from 'naja';
+import { Extension } from 'naja/dist/Naja';
 
 import DOMManager from './DOMManager';
 import ParentsManager from './ParentsManager';

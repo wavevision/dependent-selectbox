@@ -94,8 +94,7 @@ class DependentComponentTest extends TestCase
 		$container = Environment::getContainer();
 		/** @var PresenterFactory $presenterFactory */
 		$presenterFactory = $container->getByType(IPresenterFactory::class);
-		/** @var string $presenterName */
-		$presenterName = $presenterFactory->unformatPresenterClass(TestPresenter::class);
+		$presenterName = 'test';
 		/** @var TestPresenter $presenter */
 		$presenter = $presenterFactory->createPresenter($presenterName);
 		$presenter->autoCanonicalize = false;

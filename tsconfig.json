@@ -5,5 +5,10 @@
     "target": "es5",
     "typeRoots": ["./node_modules/@types"]
   },
-  "include": ["./*.js, ", "./src/assets/**/*", "./webpack/**/*"]
+  "include": [
+    "./*.js, ",
+    "./.eslintrc.js",
+    "./src/assets/**/*",
+    "./webpack/**/*"
+  ]
 }

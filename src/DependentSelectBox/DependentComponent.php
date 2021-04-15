@@ -57,7 +57,7 @@ trait DependentComponent
 		$form->onSubmit[] = function () use ($form): void {
 			foreach ($form->getDependentSelectBoxes() as $selectBox) {
 				/** @var array<mixed> $values */
-				$values = $form->getValues('array');
+				$values = $form->getUnsafeValues('array');
 				$selectBox->getDependentData($values, $selectBox->getValue());
 			}
 		};
