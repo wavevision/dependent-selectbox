@@ -41,13 +41,12 @@ jobs:
       - name: Install dependencies
         run: composer install
       - name: CI
-        run: make ci
-      - name: Coverage
         env:
           COVERALLS_PARALLEL: true
           # [1] I have no fucking clue why this has to be GITHUB_TOKEN instead of COVERALLS_TOKEN 🤷‍
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: vendor/bin/php-coveralls --coverage_clover=temp/coverage/php/coverage.xml
+        run: make ci
+
   typescript:
     name: TypeScript
     runs-on: ubuntu-latest
@@ -73,13 +72,12 @@ jobs:
       - name: Install dependencies
         run: yarn install
       - name: CI
-        run: yarn ci
-      - name: Coverage
         env:
           COVERALLS_PARALLEL: true
           # [1] Here, it's working!
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
-        run: yarn coveralls < temp/coverage/ts/lcov.info
+        run: yarn ci
+
   coverage:
     name: Coverage Report
     runs-on: ubuntu-latest

@@ -48,6 +48,9 @@ test-coverage: reset
 test-coverage-clover: reset
 	$(bin)/phpunit --coverage-clover=$(coverageClover)
 
+test-coverage-report: test-coverage-clover
+	$(bin)/php-coveralls --coverage_clover=$(coverageClover)
+
 test-coverage-open: test-coverage
 ifndef chrome
 	open -a 'Google Chrome' $(coverage)/index.html
@@ -55,4 +58,4 @@ else
 	google-chrome $(coverage)/index.html
 endif
 
-ci: check-syntax phpcs phpstan test-coverage-clover
+ci: check-syntax phpcs phpstan test-coverage-report
