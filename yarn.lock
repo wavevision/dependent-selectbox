@@ -1510,10 +1510,10 @@
     "@typescript-eslint/types" "4.22.0"
     eslint-visitor-keys "^2.0.0"
 
-"@wavevision/coding-standard@^5.2.2":
-  version "5.2.3"
-  resolved "https://registry.yarnpkg.com/@wavevision/coding-standard/-/coding-standard-5.2.3.tgz#768077b571ae70fa0d2c7d62f9331e17a62ca6aa"
-  integrity sha512-eZxcYpBH1KN6wklTcxnlT6BRipPxKVa4AVChQ2CiwMekfXqZGj9J7UKcGUAW31X6bcUe2+FESv4Bt18U5Z5rRQ==
+"@wavevision/coding-standard@^6.0.2":
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/@wavevision/coding-standard/-/coding-standard-6.0.2.tgz#bd80890b8fa5d8c772c2e9c5d5c2eafa2c52c213"
+  integrity sha512-Fj53XR34EWwMWWES94nRiWd6bwju2M3eC9ULf4MrF2H0xXYK9spLrbiXZcQscWyTACodP31AF6sAUs/8BZp+mQ==
   dependencies:
     "@babel/core" "^7.12.0"
     "@babel/plugin-proposal-class-properties" "^7.7.0"
@@ -5849,7 +5849,7 @@ ms@2.1.2:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-naja@^2.0.1:
+naja@^2.1.5:
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/naja/-/naja-2.1.5.tgz#f9b6f49b7ce074756de5349f6601b7b7bcc5a304"
   integrity sha512-xyIX8qLwgjKXLoCiuA3vNgHnrT6EndVHAzaq58kEFDJ85C60PPNE/bGW9Z1S/7f5fWCaF718I5JpSv1htmCFzA==

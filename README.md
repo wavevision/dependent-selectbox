@@ -4,8 +4,8 @@
 [![CI](https://github.com/wavevision/dependent-selectbox/workflows/CI/badge.svg)](https://github.com/wavevision/dependent-selectbox/actions/workflows/ci.yml)
 [![Coverage Status](https://coveralls.io/repos/github/wavevision/dependent-selectbox/badge.svg?branch=master&service=github)](https://coveralls.io/github/wavevision/dependent-selectbox?branch=master)
 [![PHPStan](https://img.shields.io/badge/style-level%20max-brightgreen.svg?label=phpstan)](https://github.com/phpstan/phpstan)
-[![Nette Forms](https://img.shields.io/badge/nette/forms-3.0-blue)](https://github.com/nette/forms)
-[![Naja](https://img.shields.io/badge/naja-2.0-blue)](https://github.com/jiripudil/Naja)
+[![Nette Forms](https://img.shields.io/badge/nette/forms-3.1-blue)](https://github.com/nette/forms)
+[![Naja](https://img.shields.io/badge/naja-2.1-blue)](https://github.com/jiripudil/Naja)
 
 Dependent select box component for [nette/forms](https://github.com/nette/forms) with [naja](https://github.com/jiripudil/Naja) extension on client side.
 
